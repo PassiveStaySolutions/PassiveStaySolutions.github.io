@@ -16,19 +16,6 @@
   <meta property="og:url" content="https://www.passivestaysolutions.com/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Passive Stay Solutions LLC",
-    "url": "https://www.passivestaysolutions.com/",
-    "description": "Corporate housing for traveling nurses, doctors, business professionals, and patients near hospitals.",
-    "areaServed": ["Idaho","Utah","Oregon","Texas"],
-    "email": "Daniel@passivestaysolutions.com"
-  }
-  </script>
-
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#d6b260; }
     body {
@@ -42,6 +29,8 @@
     .nav { display:flex; justify-content:space-between; padding:1rem 0; align-items:center; }
     .brand { display:flex; align-items:center; gap:.6rem; font-weight:700; }
     .logo-img { height:36px; width:auto; }
+
+    /* Card with watermark overlay that stays under text */
     .card {
       position: relative;
       background:#111827;
@@ -51,18 +40,21 @@
       margin:1rem 0;
       overflow:hidden;
     }
-    /* Scrolling watermark */
     .card::before {
       content:"";
       position:absolute;
-      inset:0;
+      top:0; left:0; right:0; bottom:0;
       background:url('PS-logo.png') no-repeat center center;
-      background-size: clamp(180px, 35vw, 320px);
-      opacity:0.06;
-      z-index:0;
+      background-size: 300px; /* adjust as needed */
+      opacity:0.08;           /* faint watermark for readability */
+      z-index:0;              /* sits over card bg, under text */
       pointer-events:none;
     }
-    .card * { position: relative; z-index:1; }
+    .card * {
+      position: relative;
+      z-index:1;              /* ensure text is above watermark */
+    }
+
     footer { padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; }
   </style>
 </head>
@@ -76,6 +68,7 @@
       <a href="#contact">Partner With Us — No Fees</a>
     </div>
   </header>
+
   <main class="container">
     <div class="card">
       <h1>Corporate Housing Partnerships for Landlords, Property Managers & Realtors</h1>
@@ -104,12 +97,14 @@
       <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
     </div>
   </main>
+
   <footer>
     <div class="container">
       © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships |
       <a href="PassiveStaySolutions_OnePager.pdf" download>Download PDF One-Pager</a>
     </div>
   </footer>
+
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
