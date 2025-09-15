@@ -28,21 +28,18 @@
       margin:1rem 0;
       overflow:hidden;
     }
+    /* Scrolling watermark: over the box background, under the text */
     .card::before {
       content:"";
       position:absolute;
-      top:50%; left:50%;
-      width:600px; height:600px;
+      top:0; left:0; right:0; bottom:0;
       background:url('PS-logo.png') no-repeat center center;
-      background-size:contain;
-      opacity:0.08;
-      transform:translate(-50%, -50%);
+      background-size:300px; /* adjust as needed */
+      opacity:0.08;          /* faint watermark */
       z-index:0;
+      pointer-events:none;   /* ensure no interaction issues */
     }
-    .card * {
-      position: relative;
-      z-index:1;
-    }
+    .card * { position: relative; z-index:1; }
     footer { padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; }
   </style>
 </head>
