@@ -1,126 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passive Stay Solutions LLC | Corporate Housing for Professionals</title>
-  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide corporate housing for traveling nurses, doctors, business professionals, and patients near hospitals. We ensure guaranteed rent, responsible tenants, excellent property care, and absolutely no fees or costs—just hassle-free monthly rent." />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="256x256" href="favicon-256.png">
-  <meta property="og:title" content="Passive Stay Solutions – Corporate Housing Partner">
-  <meta property="og:description" content="No fees. No costs. Hassle-free monthly rent for landlords, property managers, and realtors.">
-  <meta property="og:url" content="https://passivestaysolutions.com/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://passivestaysolutions.com/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Passive Stay Solutions LLC</title>
+  <meta name="description" content="Corporate Housing Partnerships for Landlords, Property Managers & Realtors — No Fees, Hassle-Free Monthly Rent">
+  <link rel="icon" type="image/png" href="PS-logo.png">
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --accent-2:#38bdf8; }
-    body { margin:0; font-family:system-ui,sans-serif; background:linear-gradient(180deg,#0b1023 0%,var(--bg) 100%); color:var(--text); }
-    a { color:var(--accent); text-decoration:none; }
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#d6b260; }
+    body {
+      margin:0;
+      font-family:system-ui,sans-serif;
+      color:var(--text);
+      background-color:#0f172a;
+      position:relative;
+      z-index:0;
+    }
+    body::before {
+      content:"";
+      position:fixed;
+      top:0; left:0; right:0; bottom:0;
+      background:url('PS-logo.png') no-repeat center center;
+      background-size:600px;
+      opacity:0.1;
+      z-index:-1;
+    }
     .container { width:min(1100px,92%); margin:0 auto; }
     header { position:sticky; top:0; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
     .nav { display:flex; justify-content:space-between; padding:1rem 0; align-items:center; }
     .brand { display:flex; align-items:center; gap:.6rem; font-weight:700; }
-    .logo { width:36px; height:36px; display:grid; place-items:center; border-radius:8px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); font-weight:900; color:#001018; }
-    .hero { padding:4rem 0; text-align:center; }
-    .hero h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.2; margin:.6rem 0; }
-    .hero p { color:var(--muted); max-width:800px; margin:0 auto; }
-    section { padding:2.6rem 0; }
-    .card { background:#111827; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin-bottom:1.5rem; }
+    .logo-img { height:36px; width:auto; }
+    .card { background:#111827; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; }
     footer { padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; }
-    form input, form textarea { width:100%; padding:.6rem; border-radius:8px; border:1px solid rgba(255,255,255,.2); margin:.4rem 0; background:#0f172a; color:var(--text); }
-    form button { background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; padding:.7rem 1.2rem; border-radius:10px; font-weight:700; color:#001018; cursor:pointer; }
-    label { display:block; font-size:.95rem; color:#cbd5e1; margin-top:.25rem; }
-    .email-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; }
-    .copy-btn { border:1px solid rgba(255,255,255,.2); background:#0f172a; padding:.35rem .7rem; border-radius:8px; color:#e5e7eb; cursor:pointer; }
-    .copy-btn:hover { border-color: rgba(255,255,255,.35); }
-    .copy-status { color:#94a3b8; font-size:.9rem; min-width:4ch; }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand"><div class="logo">PS</div><div>Passive Stay Solutions LLC</div></div>
+      <div class="brand">
+        <img src="PS-logo.png" alt="Passive Stay Solutions Logo" class="logo-img">
+        <div>Passive Stay Solutions LLC</div>
+      </div>
       <a href="#contact">Partner With Us — No Fees</a>
     </div>
   </header>
-
-  <main>
-    <section class="hero container">
+  <main class="container">
+    <div class="card">
       <h1>Corporate Housing Partnerships for Landlords, Property Managers & Realtors</h1>
-      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, business professionals, and patients receiving treatment at nearby hospitals. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.<br><br>
-      There are absolutely <strong>no fees, no costs</strong> — just hassle-free monthly rent while working with us.</p>
-    </section>
+      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, business professionals, and patients receiving treatment at nearby hospitals. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
+      <p>There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
+    </div>
 
-    <section class="container">
-      <div class="card">
-        <h2>What We’re Looking To Do</h2>
-        <p>We partner with landlords, property managers, and realtors to lease or manage properties as high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely <strong>no fees, no costs</strong> — just hassle-free monthly rent while working with us.</p>
-      </div>
+    <div class="card">
+      <h2>What We’re Looking To Do</h2>
+      <p>Partner with landlords, property managers, and realtors to lease properties for high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
+    </div>
 
-      <div class="card">
-        <h2>Benefits of Working With Us</h2>
-        <ul>
-          <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
-          <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
-          <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
-          <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
-        </ul>
-        <p>Our goal is to ensure your property is always well-maintained and stress-free for you.</p>
-      </div>
+    <div class="card">
+      <h2>Benefits of Working With Us</h2>
+      <ul>
+        <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
+        <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
+        <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
+        <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
+      </ul>
+      <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
+    </div>
 
-      <div class="card" id="contact">
-        <h2>Contact Us</h2>
-        <p><strong>Name:</strong> Daniel</p>
-        <div class="email-row">
-          <strong>Email:</strong>
-          <a id="emailLink" href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a>
-          <button id="copyEmail" class="copy-btn" type="button" aria-label="Copy email address">Copy</button>
-          <span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span>
-        </div>
-        <form action="https://formspree.io/f/mwkgnqjj" method="POST">
-          <label for="name">Your Name</label>
-          <input id="name" name="name" type="text" required>
-          <label for="email">Your Email</label>
-          <input id="email" name="email" type="email" required>
-          <label for="message">Your Message</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-          <input type="text" name="_gotcha" style="display:none">
-          <input type="hidden" name="_redirect" value="https://passivestaysolutions.com/#thanks">
-          <button type="submit">Send Message</button>
-        </form>
-        <p id="thanks" class="muted" style="font-size:.85rem; display:none;">Thanks! Your message has been sent.</p>
-      </div>
-    </section>
+    <div id="contact" class="card">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
+    </div>
   </main>
-
-  <footer>
-    <div class="container">© <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships | <a href="/PassiveStaySolutions_OnePager.pdf" download>Download PDF One-Pager</a></div>
-  </footer>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    if (location.hash === "#thanks") {
-      const el = document.getElementById("thanks");
-      if (el) el.style.display = "block";
-    }
-    (function () {
-      const emailText = "Daniel@passivestaysolutions.com";
-      const btn = document.getElementById("copyEmail");
-      const status = document.getElementById("copyStatus");
-      function setStatus(msg) { status.textContent = msg; setTimeout(() => (status.textContent = ""), 2000); }
-      async function copyEmail() {
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(emailText); }
-          else {
-            const ta = document.createElement("textarea"); ta.value = emailText;
-            ta.setAttribute("readonly",""); ta.style.position="absolute"; ta.style.left="-9999px";
-            document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
-          }
-          setStatus("Copied!");
-        } catch(e) { setStatus("Failed—long-press to copy"); }
-      }
-      if (btn) btn.addEventListener("click", copyEmail);
-    })();
-  </script>
+  <footer><div class="container">© <span id="y"></span> Passive Stay Solutions LLC</div></footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
