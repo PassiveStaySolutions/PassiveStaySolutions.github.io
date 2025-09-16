@@ -8,31 +8,23 @@
   <link rel="icon" type="image/png" href="PS-logo.png">
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#d6b260; }
-    /* Base with FIXED background (does not move) */
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
     }
     .container{ width:min(1100px,92%); margin:0 auto; }
-    /* Header with logo top-left */
     header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
     .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
     .logo-img{ height:36px; width:auto; }
-
-    /* Cards with watermark over box but UNDER text */
     .card{ position:relative; background:rgba(17,24,39,.9); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.25; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
     h1,h2{ color:#fbbf24; }
     a{ color:#22d3ee; }
-
-    /* FAQ */
     details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
     summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; }
     summary.faq-q::-webkit-details-marker{ display:none; }
-
-    /* Footer buttons, equal size */
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
     .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
@@ -88,8 +80,8 @@
     <div class="card" id="faq">
       <h2>Frequently Asked Questions</h2>
       <details class="faq">
-        <summary class="faq-q">Is There Any Charge For Working With You?</summary>
-        <div>There are absolutely no fees, no costs — just automatic monthly rental payments.</div>
+        <summary class="faq-q">Do I still get paid rent if the home is unoccupied?</summary>
+        <div>Yes absolutely! You will receive rent regardless of occupancy.</div>
       </details>
       <details class="faq">
         <summary class="faq-q">Who Would Be Staying In My Property?</summary>
