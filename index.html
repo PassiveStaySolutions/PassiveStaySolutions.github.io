@@ -91,7 +91,41 @@
     }
     #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
     #testimonials .swipe-hint{ color:var(--muted); font-size:.85rem; margin-top:.6rem; }
-  </style>
+ /* --- Testimonials readability & layout fixes --- */
+#testimonials.card::before{
+  opacity:.12;              /* softer watermark on this card only */
+}
+
+#testimonials .fade-wrap{
+  min-height: 190px;        /* give quotes room so nothing overlaps */
+  padding: .25rem 0;
+}
+
+#testimonials blockquote{
+  font-size:1.0rem;         /* a hair smaller for mobile fit */
+  line-height:1.55;
+  word-wrap:break-word;
+}
+
+#testimonials .t-dots{
+  justify-content:center;   /* center the dots */
+  margin-top:.8rem;
+}
+
+#testimonials .swipe-hint{
+  display:block;
+  text-align:center;
+  margin-top:.35rem;
+  color:var(--muted);
+  font-size:.85rem;
+  opacity:.85;
+}
+
+/* tighten things further on very small screens */
+@media (max-width:480px){
+  #testimonials .fade-wrap{ min-height: 210px; }
+  #testimonials blockquote{ font-size:.98rem; line-height:1.55; }
+} </style>
 
   <!-- (Optional) Google Analytics – replace with your GA4 ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
