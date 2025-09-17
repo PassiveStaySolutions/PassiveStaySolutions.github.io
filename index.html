@@ -20,6 +20,7 @@
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Passive Stay Solutions — Corporate Housing Partnerships">
 
   <!-- Twitter (X) -->
   <meta name="twitter:card" content="summary_large_image">
@@ -34,100 +35,69 @@
   <link rel="apple-touch-icon" href="logo_256x256.png">
   <link rel="shortcut icon" href="logo_32x32.png">
 
+  <!-- Preload hero background -->
+  <link rel="preload" as="image" href="Livingroom.jpeg" imagesrcset="Livingroom.jpeg">
+
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; }
-    /* Fixed background image (does not move) */
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
     }
     .container{ width:min(1100px,92%); margin:0 auto; }
 
-    /* Header with logo top-left */
     header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
     .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
     .logo-img{ height:36px; width:auto; }
 
-    /* Cards with watermark placed over the box but under the text */
     .card{ position:relative; background:rgba(17,24,39,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
     h1,h2{ color:#fbbf24; margin:0 0 .6rem; }
     a{ color:var(--accent); text-decoration:none; }
 
-    /* Trust badge under hero copy */
-    .trust-badge{
-      display:inline-block; background:#facc15; color:#111827; font-weight:700;
-      border-radius:8px; padding:.35rem .6rem; margin-top:.75rem;
-    }
+    .trust-badge{ display:inline-block; background:#facc15; color:#111827; font-weight:700; border-radius:8px; padding:.35rem .6rem; margin-top:.75rem; }
 
-    /* FAQ */
     details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{
-      cursor:pointer; list-style:none; font-weight:700;
-      padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18);
-    }
+    summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18); }
     summary.faq-q::-webkit-details-marker{ display:none; }
     details.faq > div{ margin-top:.65rem; }
 
-    /* Footer buttons, equal size */
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
     .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
     .icon-btn img{ width:36px; height:36px; display:block; }
 
-    /* Testimonials (crossfade + swipe) */
     #testimonials { user-select:none; }
     #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
     #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:120px; }
+    #testimonials .fade-wrap{ position:relative; min-height:190px; padding:.25rem 0; }
     #testimonials .layer{ position:absolute; inset:0; opacity:0; transition:opacity .45s ease; }
     #testimonials .layer.is-active{ opacity:1; }
-    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
-    #testimonials .t-dot{
-      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
-      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
-    }
+    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; justify-content:center; }
+    #testimonials .t-dot{ width:10px; height:10px; border-radius:9999px; border:none; cursor:pointer; background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease; }
     #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
-    #testimonials .swipe-hint{ color:var(--muted); font-size:.85rem; margin-top:.6rem; }
- /* --- Testimonials readability & layout fixes --- */
-#testimonials.card::before{
-  opacity:.12;              /* softer watermark on this card only */
-}
+    #testimonials .t-dot:focus-visible{ outline:2px solid #fbbf24; outline-offset:2px; }
+    #testimonials .swipe-hint{ display:block; text-align:center; margin-top:.35rem; color:var(--muted); font-size:.85rem; opacity:.85; }
 
-#testimonials .fade-wrap{
-  min-height: 190px;        /* give quotes room so nothing overlaps */
-  padding: .25rem 0;
-}
+    @media (hover: hover) and (pointer: fine) {
+      #testimonials .swipe-hint { display:none; }
+    }
+    @media (max-width:480px){
+      #testimonials .fade-wrap{ min-height:210px; }
+      #testimonials blockquote{ font-size:.98rem; line-height:1.55; }
+    }
 
-#testimonials blockquote{
-  font-size:1.0rem;         /* a hair smaller for mobile fit */
-  line-height:1.55;
-  word-wrap:break-word;
-}
+    /* Anchor scroll offset for sticky header */
+    #contact, #about, #faq, #testimonials { scroll-margin-top: 80px; }
 
-#testimonials .t-dots{
-  justify-content:center;   /* center the dots */
-  margin-top:.8rem;
-}
+    @media (prefers-reduced-motion: reduce) {
+      #testimonials .layer { transition: none !important; }
+    }
+  </style>
 
-#testimonials .swipe-hint{
-  display:block;
-  text-align:center;
-  margin-top:.35rem;
-  color:var(--muted);
-  font-size:.85rem;
-  opacity:.85;
-}
-
-/* tighten things further on very small screens */
-@media (max-width:480px){
-  #testimonials .fade-wrap{ min-height: 210px; }
-  #testimonials blockquote{ font-size:.98rem; line-height:1.55; }
-} </style>
-
-  <!-- (Optional) Google Analytics – replace with your GA4 ID -->
+  <!-- Google Analytics (replace with your GA4 ID) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -136,15 +106,19 @@
     gtag('config', 'G-XXXXXXX');
   </script>
 
-  <!-- Organization & Website structured data -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Passive Stay Solutions LLC",
     "url": "https://www.passivestaysolutions.com/",
-    "logo": "https://www.passivestaysolutions.com/PS-logo.png",
-    "image": "https://www.passivestaysolutions.com/PS-logo.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.passivestaysolutions.com/PS-logo.png",
+      "width": 512,
+      "height": 512
+    },
     "sameAs": ["https://www.facebook.com/share/17BpY5cwNb/"]
   }
   </script>
@@ -197,23 +171,18 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
-    <!-- Testimonials (crossfade + swipeable) -->
     <div class="card" id="testimonials">
       <h2>What People Say About Us</h2>
-
       <div class="fade-wrap" aria-live="polite">
-        <!-- Two layers for crossfade -->
         <figure class="layer is-active" id="t-layer-a">
           <blockquote id="t-quote-a">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
           <figcaption id="t-author-a">— Evelyn Carter</figcaption>
         </figure>
-
         <figure class="layer" id="t-layer-b">
           <blockquote id="t-quote-b"></blockquote>
           <figcaption id="t-author-b"></figcaption>
         </figure>
       </div>
-
       <div class="t-dots" role="tablist" aria-label="Testimonials">
         <button class="t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show testimonial 1"></button>
         <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
@@ -221,7 +190,6 @@
         <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
         <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
       </div>
-
       <div class="swipe-hint" aria-hidden="true">Swipe or drag to navigate</div>
     </div>
 
@@ -271,7 +239,7 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  <!-- Testimonials Rotator (crossfade + swipe) -->
+  <!-- Testimonials Rotator (crossfade + swipe, with reduce-motion support) -->
   <script>
     (function(){
       const items = [
@@ -285,126 +253,8 @@
       const card   = document.getElementById('testimonials');
       const dots   = Array.from(card.querySelectorAll('.t-dot'));
 
-      // Crossfade layers
       const layerA = document.getElementById('t-layer-a');
       const layerB = document.getElementById('t-layer-b');
       const qa = document.getElementById('t-quote-a');
       const aa = document.getElementById('t-author-a');
-      const qb = document.getElementById('t-quote-b');
-      const ab = document.getElementById('t-author-b');
-
-      let i = 0, timer = null, delay = 6000;
-      let activeIsA = true; // which layer is visible
-
-      function updateDots(idx){
-        dots.forEach((d, j) => {
-          const active = j === idx;
-          d.setAttribute('aria-selected', active ? 'true' : 'false');
-          d.toggleAttribute('aria-current', active);
-        });
-      }
-
-      function setContent(useA, idx){
-        const item = items[idx];
-        if(useA){ qa.textContent = "“" + item.quote + "”"; aa.textContent = item.author; }
-        else{ qb.textContent = "“" + item.quote + "”"; ab.textContent = item.author; }
-      }
-
-      function crossfadeTo(idx){
-        const nextIsA = !activeIsA;
-        setContent(nextIsA, idx);
-        if(nextIsA){ layerA.classList.add('is-active'); layerB.classList.remove('is-active'); }
-        else{ layerB.classList.add('is-active'); layerA.classList.remove('is-active'); }
-        activeIsA = nextIsA;
-        updateDots(idx);
-      }
-
-      function goTo(idx){
-        i = (idx + items.length) % items.length;
-        crossfadeTo(i);
-        start();
-      }
-
-      function next(){ goTo(i + 1); }
-      function prev(){ goTo(i - 1); }
-
-      function start(){ stop(); timer = setInterval(next, delay); }
-      function stop(){ if(timer) clearInterval(timer); timer = null; }
-
-      // init
-      updateDots(i);
-      setContent(true, i);
-      start();
-
-      // dots
-      dots.forEach((d, j) => d.addEventListener('click', () => goTo(j)));
-
-      // pause on hover/focus
-      card.addEventListener('mouseenter', stop);
-      card.addEventListener('mouseleave', start);
-      card.addEventListener('focusin', stop);
-      card.addEventListener('focusout', start);
-
-      // swipe / drag
-      let startX = 0, startY = 0, isTouch = false, moved = false;
-
-      function onStart(e){
-        isTouch = e.type === 'touchstart';
-        const p = isTouch ? e.touches[0] : e;
-        startX = p.clientX; startY = p.clientY; moved = false;
-        stop();
-        card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-        card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.addEventListener('mouseleave', onEnd);
-      }
-      function onMove(e){
-        const p = isTouch ? e.touches[0] : e;
-        const dx = p.clientX - startX;
-        const dy = p.clientY - startY;
-        moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
-      }
-      function onEnd(e){
-        card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-        card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.removeEventListener('mouseleave', onEnd);
-
-        if(moved){
-          const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
-          const endX = p ? p.clientX : startX;
-          const dx = endX - startX;
-          if(dx < 0) next(); else if(dx > 0) prev();
-        }
-        start();
-      }
-
-      card.addEventListener('touchstart', onStart, {passive:true});
-      card.addEventListener('mousedown', onStart);
-    })();
-  </script>
-
-  <!-- FAQ Structured Data (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"Do I still get paid rent if the home is unoccupied?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}
-      },
-      {
-        "@type":"Question",
-        "name":"Who would be staying in my property?",
-        "acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I see if my property will qualify?",
-        "acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}
-      }
-    ]
-  }
-  </script>
-</body>
-</html>
+      const qb
