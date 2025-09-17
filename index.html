@@ -1,177 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Passive Stay Solutions LLC</title>
-  <meta name="description" content="Corporate Housing Partnerships — No fees, guaranteed monthly rent, responsible tenants, and professional property care.">
-  <link rel="icon" type="image/png" href="PS-logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO & Social Cards -->
-  <link rel="canonical" href="https://www.passivestaysolutions.com/">
+  <!-- 🔹 SEO -->
+  <title>Passive Stay Solutions LLC | Corporate Housing for Nurses, Doctors & Professionals</title>
+  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
+  <meta name="author" content="Passive Stay Solutions LLC" />
+
+  <!-- 🔹 Open Graph (Facebook, LinkedIn, etc.) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Passive Stay Solutions LLC — Corporate Housing Partnerships">
-  <meta property="og:description" content="No fees, guaranteed monthly rent, responsible tenants, and professional property care.">
-  <meta property="og:image" content="https://www.passivestaysolutions.com/PS-logo.png">
   <meta property="og:url" content="https://www.passivestaysolutions.com/">
+  <meta property="og:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
+  <meta property="og:description" content="Corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
+  <meta property="og:image" content="https://www.passivestaysolutions.com/PS-logo.png">
+
+  <!-- 🔹 Twitter (X) Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Passive Stay Solutions LLC — Corporate Housing Partnerships">
-  <meta name="twitter:description" content="No fees, guaranteed monthly rent, responsible tenants, and professional property care.">
+  <meta name="twitter:url" content="https://www.passivestaysolutions.com/">
+  <meta name="twitter:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
+  <meta name="twitter:description" content="Corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
   <meta name="twitter:image" content="https://www.passivestaysolutions.com/PS-logo.png">
 
+  <!-- 🔹 Favicons / App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="PS-logo.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="PS-logo.png">
+  <link rel="apple-touch-icon" href="PS-logo.png">
+  <link rel="shortcut icon" href="PS-logo.png">
+
+  <!-- Styles -->
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#d6b260; }
-    /* Base with FIXED background (does not move) */
-    body{
-      margin:0; font-family:system-ui,sans-serif; color:var(--text);
-      background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
+    :root { 
+      --bg:#0f172a; 
+      --card:#111827; 
+      --text:#e5e7eb; 
+      --muted:#94a3b8; 
+      --accent:#22d3ee; 
+      --accent-2:#38bdf8; 
     }
-    .container{ width:min(1100px,92%); margin:0 auto; }
-
-    /* Header with logo top-left */
-    header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
-    .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
-    .logo-img{ height:36px; width:auto; }
-
-    /* Cards with watermark over box but UNDER text */
-    .card{ position:relative; background:rgba(17,24,39,.9); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
-    .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.25; z-index:0; pointer-events:none; }
-    .card *{ position:relative; z-index:1; }
-    h1,h2{ color:#fbbf24; }
-    a{ color:#22d3ee; }
-
-    /* Trust badge under hero copy */
-    .trust-badge{
-      display:inline-block; background:#facc15; color:#111827; font-weight:700;
-      border-radius:8px; padding:.35rem .6rem; margin-top:.75rem;
+    body {
+      margin:0;
+      font-family:system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
 
-    /* FAQ */
-    details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; }
-    summary.faq-q::-webkit-details-marker{ display:none; }
+    /* Background watermark */
+    .watermark {
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      z-index:1;
+      opacity:0.12;
+      pointer-events:none;
+    }
+    .watermark img {
+      width:500px;
+      max-width:80vw;
+    }
 
-    /* Footer buttons, equal size */
-    footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
-    .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
-    .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
-    .icon-btn img{ width:36px; height:36px; display:block; }
+    .container { width:min(1100px,92%); margin:0 auto; position:relative; z-index:2; }
+    header { position:sticky; top:0; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); z-index:3; }
+    .nav { display:flex; justify-content:space-between; padding:1rem 0; align-items:center; }
+    .brand { display:flex; align-items:center; gap:.6rem; font-weight:700; }
+    .logo { width:36px; height:36px; display:grid; place-items:center; border-radius:8px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); font-weight:900; color:#001018; }
+    .hero { padding:4rem 0; text-align:center; }
+    .hero h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.2; margin:.6rem 0; }
+    .hero p { color:var(--muted); max-width:800px; margin:0 auto; }
+    section { padding:2.6rem 0; }
+    .card { background:#111827; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin-bottom:1.5rem; position:relative; z-index:2; }
+    footer { padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; position:relative; z-index:2; }
+    form input, form textarea { width:100%; padding:.6rem; border-radius:8px; border:1px solid rgba(255,255,255,.2); margin:.4rem 0; background:#0f172a; color:var(--text); }
+    form button { background:linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; padding:.7rem 1.2rem; border-radius:10px; font-weight:700; color:#001018; cursor:pointer; }
+
+    /* FAQ styles */
+    details { margin: 1rem 0; }
+    summary { font-weight: bold; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content:" ➤"; float:right; }
+    details[open] summary::after { content:" ▼"; }
+
+    /* Facebook CTA */
+    .facebook-btn img {
+      width:40px;
+      height:40px;
+    }
   </style>
-
-  <!-- (Optional) Google Analytics: replace G-XXXXXXX with your GA4 ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
 </head>
 <body>
+  <!-- Watermark -->
+  <div class="watermark">
+    <img src="PS-logo.png" alt="Passive Stay Solutions Logo">
+  </div>
+
   <header>
     <div class="container nav">
-      <div class="brand">
-        <img src="PS-logo.png" alt="Passive Stay Solutions logo" class="logo-img" width="36" height="36" loading="eager">
-        <div>Passive Stay Solutions LLC</div>
-      </div>
-      <a href="#contact">Partner With Us — No Fees</a>
+      <div class="brand"><div class="logo">PS</div><div>Passive Stay Solutions LLC</div></div>
+      <a href="#contact">Partner With Us</a>
     </div>
   </header>
 
-  <main class="container">
-    <div class="card">
-      <h1>Corporate Housing Partnerships</h1>
+  <main>
+    <section class="hero container">
+      <h1>Corporate Housing Partnerships for Landlords, Property Managers & Realtors</h1>
       <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients receiving treatment at nearby hospitals, business professionals, and traveling military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
-      <p>There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
-      <span class="trust-badge">No fees • Guaranteed monthly rent</span>
-    </div>
+      <p><strong>There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</strong></p>
+    </section>
 
-    <div class="card">
-      <h2>What We’re Looking To Do</h2>
-      <p>Partner with landlords, property managers, and realtors to lease properties for high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
-    </div>
+    <section class="container">
+      <div class="card">
+        <h2>What We’re Looking To Do</h2>
+        <p>Partner with landlords, property managers, and realtors to lease properties for high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
+        <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
+      </div>
 
-    <div class="card">
-      <h2>Benefits of Working With Us</h2>
-      <ul>
-        <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
-        <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
-        <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
-        <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
-      </ul>
-      <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
-    </div>
+      <div class="card">
+        <h2>Benefits of Working With Us</h2>
+        <ul>
+          <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
+          <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
+          <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
+          <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
+        </ul>
+      </div>
 
-    <div id="contact" class="card">
-      <h2>Contact</h2>
-      <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
-    </div>
+      <div class="card">
+        <h2>Frequently Asked Questions</h2>
+        <details>
+          <summary>Do I still get paid rent if the home is unoccupied?</summary>
+          <p>Yes absolutely! You will receive rent regardless of occupancy.</p>
+        </details>
+        <details>
+          <summary>Who Would Be Staying In My Property?</summary>
+          <p>Our guests are business and leisure travelers seeking something different. We deliver the “un-hotel” experience to our guests.</p>
+        </details>
+        <details>
+          <summary>How Do I See If My Property Will Qualify?</summary>
+          <p>Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!</p>
+        </details>
+      </div>
 
-    <div id="about" class="card">
-      <h2>About Daniel</h2>
-      <p>Daniel grew up immersed in the construction industry, where he built a strong work ethic and deep respect for quality housing. Those early experiences gave him practical knowledge of the building trades and an appreciation for well-maintained properties.</p>
-      <p>After marrying into a family with a rich legacy in the military and healthcare, Daniel saw firsthand the unique challenges faced by traveling healthcare workers, patients, and military personnel. His perspective became deeply personal when his father was diagnosed with Alpha-1 Antitrypsin Deficiency and required a double lung transplant. This journey highlighted the urgent need for safe, reliable housing during times of transition.</p>
-      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers—while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
-    </div>
-
-    <div class="card" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <details class="faq">
-        <summary class="faq-q">Do I still get paid rent if the home is unoccupied?</summary>
-        <div>Yes absolutely! You will receive rent regardless of occupancy.</div>
-      </details>
-      <details class="faq">
-        <summary class="faq-q">Who Would Be Staying In My Property?</summary>
-        <div>Our guests are business and leisure travelers seeking something different. We deliver the “un-hotel” experience to our guests.</div>
-      </details>
-      <details class="faq">
-        <summary class="faq-q">How Do I See If My Property Will Qualify?</summary>
-        <div>Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!</div>
-      </details>
-    </div>
+      <div class="card" id="contact">
+        <h2>Contact Us</h2>
+        <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
+        <form action="https://formspree.io/f/mwkgnqjj" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p style="font-size:.85rem;color:var(--muted);">Form powered by Formspree (free tier).</p>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="container">
-      <div class="footer-row">
-        <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
-          <img src="Email.png" alt="Email Passive Stay Solutions" width="36" height="36" loading="lazy">
-        </a>
-        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" aria-label="Follow Passive Stay Solutions on Facebook">
-          <img src="Facebook.png" alt="Follow Passive Stay Solutions on Facebook" width="36" height="36" loading="lazy">
-        </a>
-      </div>
-      © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships |
-      <a href="PassiveStaySolutions_OnePager.pdf" download>Download PDF One-Pager</a>
+      © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships  
+      | <a href="PassiveStaySolutions_OnePager.pdf" download>Download PDF One-Pager</a>  
+      | <a class="facebook-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank"><img src="Facebook.png" alt="Facebook"></a>
     </div>
   </footer>
-
   <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
-
-  <!-- FAQ Structured Data (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"Do I still get paid rent if the home is unoccupied?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}
-      },
-      {
-        "@type":"Question",
-        "name":"Who would be staying in my property?",
-        "acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I see if my property will qualify?",
-        "acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}
-      }
-    ]
-  }
-  </script>
 </body>
 </html>
