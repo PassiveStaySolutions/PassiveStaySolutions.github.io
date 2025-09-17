@@ -64,14 +64,34 @@
 
     /* FAQ */
     details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; }
+    summary.faq-q{
+      cursor:pointer; list-style:none; font-weight:700;
+      padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18);
+    }
     summary.faq-q::-webkit-details-marker{ display:none; }
+    details.faq > div{ margin-top:.65rem; }
 
     /* Footer buttons, equal size */
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
     .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
     .icon-btn img{ width:36px; height:36px; display:block; }
+
+    /* Testimonials (rotator + fade) */
+    #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
+    #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
+    #testimonials .fade-wrap{ position:relative; min-height:100px; }
+    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
+    #testimonials .is-fading{ opacity:0; }
+
+    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
+    #testimonials .t-dot{
+      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
+      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
+    }
+    #testimonials .t-dot[aria-current="true"]{
+      background:#fbbf24; transform:scale(1.1);
+    }
   </style>
 
   <!-- (Optional) Google Analytics – replace with your GA4 ID -->
@@ -144,6 +164,26 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
+    <!-- NEW: Testimonials (auto-rotating with fade) -->
+    <div class="card" id="testimonials">
+      <h2>What People Say About Us</h2>
+
+      <div class="fade-wrap">
+        <figure class="fade-el">
+          <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
+          <figcaption id="t-author">— Evelyn Carter</figcaption>
+        </figure>
+      </div>
+
+      <div class="t-dots" role="tablist" aria-label="Testimonials">
+        <button class="t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show testimonial 1"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
+      </div>
+    </div>
+
     <div id="contact" class="card">
       <h2>Contact</h2>
       <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
@@ -179,7 +219,7 @@
         <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
           <img src="Email.png" alt="Email Passive Stay Solutions" width="36" height="36" loading="lazy">
         </a>
-        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" aria-label="Follow Passive Stay Solutions on Facebook">
+        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow Passive Stay Solutions on Facebook">
           <img src="Facebook.png" alt="Follow Passive Stay Solutions on Facebook" width="36" height="36" loading="lazy">
         </a>
       </div>
@@ -189,6 +229,54 @@
   </footer>
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  <!-- Testimonials Rotator (fade) -->
+  <script>
+    (function(){
+      const items = [
+        { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
+        { quote: "I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.", author: "— David Martinez" },
+        { quote: "The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.", author: "— Sophia Nguyen" },
+        { quote: "I used to budget for surprise repairs and lost rent—now it’s steady income and zero stress. The property actually looks better month over month.", author: "— Marcus Reed" },
+        { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
+      ];
+
+      const wrap = document.querySelector('#testimonials .fade-wrap');
+      const fig = wrap.querySelector('figure');
+      const q = document.getElementById('t-quote');
+      const a = document.getElementById('t-author');
+      const dots = Array.from(document.querySelectorAll('#testimonials .t-dot'));
+      const card = document.getElementById('testimonials');
+
+      let i = 0, timer = null, delay = 6000, anim = 450;
+
+      function render(idx){
+        fig.classList.add('is-fading');
+        setTimeout(() => {
+          q.textContent = "“" + items[idx].quote + "”";
+          a.textContent = items[idx].author;
+          dots.forEach((d, j) => {
+            const active = j === idx;
+            d.setAttribute('aria-selected', active ? 'true' : 'false');
+            d.toggleAttribute('aria-current', active);
+          });
+          fig.classList.remove('is-fading');
+        }, anim);
+      }
+
+      function next(){ i = (i + 1) % items.length; render(i); }
+      function start(){ stop(); timer = setInterval(next, delay); }
+      function stop(){ if (timer) clearInterval(timer); timer = null; }
+
+      dots.forEach((d, j) => d.addEventListener('click', () => { i = j; render(i); start(); }));
+      card.addEventListener('mouseenter', stop);
+      card.addEventListener('mouseleave', start);
+      card.addEventListener('focusin', stop);
+      card.addEventListener('focusout', start);
+
+      render(i); start();
+    })();
+  </script>
 
   <!-- FAQ Structured Data (SEO) -->
   <script type="application/ld+json">
