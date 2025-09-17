@@ -77,21 +77,20 @@
     .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
     .icon-btn img{ width:36px; height:36px; display:block; }
 
-    /* Testimonials (rotator + fade) */
+    /* Testimonials (crossfade + swipe) */
+    #testimonials { user-select:none; }
     #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
     #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:100px; }
-    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
-    #testimonials .is-fading{ opacity:0; }
-
+    #testimonials .fade-wrap{ position:relative; min-height:120px; }
+    #testimonials .layer{ position:absolute; inset:0; opacity:0; transition:opacity .45s ease; }
+    #testimonials .layer.is-active{ opacity:1; }
     #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
     #testimonials .t-dot{
       width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
       background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
     }
-    #testimonials .t-dot[aria-current="true"]{
-      background:#fbbf24; transform:scale(1.1);
-    }
+    #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
+    #testimonials .swipe-hint{ color:var(--muted); font-size:.85rem; margin-top:.6rem; }
   </style>
 
   <!-- (Optional) Google Analytics – replace with your GA4 ID -->
@@ -164,14 +163,20 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
-    <!-- NEW: Testimonials (auto-rotating with fade) -->
+    <!-- Testimonials (crossfade + swipeable) -->
     <div class="card" id="testimonials">
       <h2>What People Say About Us</h2>
 
-      <div class="fade-wrap">
-        <figure class="fade-el">
-          <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
-          <figcaption id="t-author">— Evelyn Carter</figcaption>
+      <div class="fade-wrap" aria-live="polite">
+        <!-- Two layers for crossfade -->
+        <figure class="layer is-active" id="t-layer-a">
+          <blockquote id="t-quote-a">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
+          <figcaption id="t-author-a">— Evelyn Carter</figcaption>
+        </figure>
+
+        <figure class="layer" id="t-layer-b">
+          <blockquote id="t-quote-b"></blockquote>
+          <figcaption id="t-author-b"></figcaption>
         </figure>
       </div>
 
@@ -182,6 +187,8 @@
         <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
         <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
       </div>
+
+      <div class="swipe-hint" aria-hidden="true">Swipe or drag to navigate</div>
     </div>
 
     <div id="contact" class="card">
@@ -230,7 +237,7 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  <!-- Testimonials Rotator (fade) -->
+  <!-- Testimonials Rotator (crossfade + swipe) -->
   <script>
     (function(){
       const items = [
@@ -241,40 +248,103 @@
         { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
       ];
 
-      const wrap = document.querySelector('#testimonials .fade-wrap');
-      const fig = wrap.querySelector('figure');
-      const q = document.getElementById('t-quote');
-      const a = document.getElementById('t-author');
-      const dots = Array.from(document.querySelectorAll('#testimonials .t-dot'));
-      const card = document.getElementById('testimonials');
+      const card   = document.getElementById('testimonials');
+      const dots   = Array.from(card.querySelectorAll('.t-dot'));
 
-      let i = 0, timer = null, delay = 6000, anim = 450;
+      // Crossfade layers
+      const layerA = document.getElementById('t-layer-a');
+      const layerB = document.getElementById('t-layer-b');
+      const qa = document.getElementById('t-quote-a');
+      const aa = document.getElementById('t-author-a');
+      const qb = document.getElementById('t-quote-b');
+      const ab = document.getElementById('t-author-b');
 
-      function render(idx){
-        fig.classList.add('is-fading');
-        setTimeout(() => {
-          q.textContent = "“" + items[idx].quote + "”";
-          a.textContent = items[idx].author;
-          dots.forEach((d, j) => {
-            const active = j === idx;
-            d.setAttribute('aria-selected', active ? 'true' : 'false');
-            d.toggleAttribute('aria-current', active);
-          });
-          fig.classList.remove('is-fading');
-        }, anim);
+      let i = 0, timer = null, delay = 6000;
+      let activeIsA = true; // which layer is visible
+
+      function updateDots(idx){
+        dots.forEach((d, j) => {
+          const active = j === idx;
+          d.setAttribute('aria-selected', active ? 'true' : 'false');
+          d.toggleAttribute('aria-current', active);
+        });
       }
 
-      function next(){ i = (i + 1) % items.length; render(i); }
-      function start(){ stop(); timer = setInterval(next, delay); }
-      function stop(){ if (timer) clearInterval(timer); timer = null; }
+      function setContent(useA, idx){
+        const item = items[idx];
+        if(useA){ qa.textContent = "“" + item.quote + "”"; aa.textContent = item.author; }
+        else{ qb.textContent = "“" + item.quote + "”"; ab.textContent = item.author; }
+      }
 
-      dots.forEach((d, j) => d.addEventListener('click', () => { i = j; render(i); start(); }));
+      function crossfadeTo(idx){
+        const nextIsA = !activeIsA;
+        setContent(nextIsA, idx);
+        if(nextIsA){ layerA.classList.add('is-active'); layerB.classList.remove('is-active'); }
+        else{ layerB.classList.add('is-active'); layerA.classList.remove('is-active'); }
+        activeIsA = nextIsA;
+        updateDots(idx);
+      }
+
+      function goTo(idx){
+        i = (idx + items.length) % items.length;
+        crossfadeTo(i);
+        start();
+      }
+
+      function next(){ goTo(i + 1); }
+      function prev(){ goTo(i - 1); }
+
+      function start(){ stop(); timer = setInterval(next, delay); }
+      function stop(){ if(timer) clearInterval(timer); timer = null; }
+
+      // init
+      updateDots(i);
+      setContent(true, i);
+      start();
+
+      // dots
+      dots.forEach((d, j) => d.addEventListener('click', () => goTo(j)));
+
+      // pause on hover/focus
       card.addEventListener('mouseenter', stop);
       card.addEventListener('mouseleave', start);
       card.addEventListener('focusin', stop);
       card.addEventListener('focusout', start);
 
-      render(i); start();
+      // swipe / drag
+      let startX = 0, startY = 0, isTouch = false, moved = false;
+
+      function onStart(e){
+        isTouch = e.type === 'touchstart';
+        const p = isTouch ? e.touches[0] : e;
+        startX = p.clientX; startY = p.clientY; moved = false;
+        stop();
+        card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
+        card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
+        if(!isTouch) card.addEventListener('mouseleave', onEnd);
+      }
+      function onMove(e){
+        const p = isTouch ? e.touches[0] : e;
+        const dx = p.clientX - startX;
+        const dy = p.clientY - startY;
+        moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
+      }
+      function onEnd(e){
+        card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
+        card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
+        if(!isTouch) card.removeEventListener('mouseleave', onEnd);
+
+        if(moved){
+          const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
+          const endX = p ? p.clientX : startX;
+          const dx = endX - startX;
+          if(dx < 0) next(); else if(dx > 0) prev();
+        }
+        start();
+      }
+
+      card.addEventListener('touchstart', onStart, {passive:true});
+      card.addEventListener('mousedown', onStart);
     })();
   </script>
 
