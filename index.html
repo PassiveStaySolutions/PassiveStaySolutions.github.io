@@ -239,7 +239,7 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  <!-- Testimonials Rotator (fade) -->
+  <!-- Testimonials Rotator (fade + swipe) -->
   <script>
     (function(){
       const items = [
@@ -251,15 +251,15 @@
       ];
 
       const wrap = document.querySelector('#testimonials .fade-wrap');
-      const fig = wrap.querySelector('figure');
-      const q = document.getElementById('t-quote');
-      const a = document.getElementById('t-author');
+      const fig  = wrap.querySelector('figure');
+      const q    = document.getElementById('t-quote');
+      const a    = document.getElementById('t-author');
       const dots = Array.from(document.querySelectorAll('#testimonials .t-dot'));
       const card = document.getElementById('testimonials');
 
       let i = 0, timer = null;
       const delay = 6000;
-      const anim = 450;
+      const anim  = 450;
 
       function render(idx){
         fig.classList.add('is-fading');
@@ -276,6 +276,7 @@
       }
 
       function next(){ i = (i + 1) % items.length; render(i); }
+      function prev(){ i = (i - 1 + items.length) % items.length; render(i); }
       function goTo(idx){ i = (idx + items.length) % items.length; render(i); start(); }
 
       function start(){ stop(); timer = setInterval(next, delay); }
@@ -293,9 +294,42 @@
       card.addEventListener('mouseleave', start);
       card.addEventListener('focusin', stop);
       card.addEventListener('focusout', start);
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stop(); else start();
-      }, {passive:true});
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); }, {passive:true});
+
+      // --- SWIPE / DRAG (touch & mouse) ---
+      let startX = 0, startY = 0, isTouch = false, moved = false;
+
+      function onStart(e){
+        isTouch = e.type === 'touchstart';
+        const p = isTouch ? e.touches[0] : e;
+        startX = p.clientX; startY = p.clientY; moved = false;
+        stop();
+        card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, {passive:true});
+        card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
+        if(!isTouch) card.addEventListener('mouseleave', onEnd);
+      }
+      function onMove(e){
+        const p = isTouch ? e.touches[0] : e;
+        const dx = p.clientX - startX;
+        const dy = p.clientY - startY;
+        moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
+      }
+      function onEnd(e){
+        card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
+        card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
+        if(!isTouch) card.removeEventListener('mouseleave', onEnd);
+
+        if(moved){
+          const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
+          const endX = p ? p.clientX : startX;
+          const dx = endX - startX;
+          if (dx < 0) next(); else if (dx > 0) prev();
+        }
+        start();
+      }
+
+      card.addEventListener('touchstart', onStart, {passive:true});
+      card.addEventListener('mousedown', onStart);
     })();
   </script>
 
