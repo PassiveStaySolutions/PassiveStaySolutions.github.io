@@ -9,7 +9,7 @@
   <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Passive Stay Solutions LLC">
   <meta property="og:url" content="https://www.passivestaysolutions.com/">
@@ -17,17 +17,18 @@
   <meta property="og:description" content="No fees, guaranteed rent, and responsible tenants. We partner with landlords, property managers, and realtors to provide hassle-free corporate housing.">
   <meta property="og:image" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
   <meta property="og:image:secure_url" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Twitter -->
+  <!-- Twitter (X) -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.passivestaysolutions.com/">
   <meta name="twitter:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
   <meta name="twitter:description" content="No fees, guaranteed rent, and responsible tenants. We partner with landlords, property managers, and realtors to provide hassle-free corporate housing.">
   <meta name="twitter:image" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
 
-  <!-- Favicons -->
+  <!-- Favicons / App icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="logo_32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="logo_256x256.png">
   <link rel="apple-touch-icon" href="logo_256x256.png">
@@ -35,48 +36,81 @@
 
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; }
+    /* Fixed background image (does not move) */
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
     }
     .container{ width:min(1100px,92%); margin:0 auto; }
+
+    /* Header with logo top-left */
     header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
     .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
     .logo-img{ height:36px; width:auto; }
+
+    /* Cards with watermark placed over the box but under the text */
     .card{ position:relative; background:rgba(17,24,39,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
     h1,h2{ color:#fbbf24; margin:0 0 .6rem; }
     a{ color:var(--accent); text-decoration:none; }
-    .trust-badge{ display:inline-block; background:#facc15; color:#111827; font-weight:700; border-radius:8px; padding:.35rem .6rem; margin-top:.75rem; }
+
+    /* Trust badge under hero copy */
+    .trust-badge{
+      display:inline-block; background:#facc15; color:#111827; font-weight:700;
+      border-radius:8px; padding:.35rem .6rem; margin-top:.75rem;
+    }
 
     /* FAQ */
     details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18); }
+    summary.faq-q{
+      cursor:pointer; list-style:none; font-weight:700;
+      padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18);
+    }
     summary.faq-q::-webkit-details-marker{ display:none; }
     details.faq > div{ margin-top:.65rem; }
 
     /* Footer */
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
-    .icon-btn{ display:inline-block; line-height:0; border-radius:9999px; overflow:hidden; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); }
-    .icon-btn img{ width:36px; height:36px; display:block; }
 
-    /* Testimonials (crossfade + swipe) */
-    #testimonials { user-select:none; }
+    /* --- CTA buttons: normalize sizes & behavior --- */
+    .icon-btn{
+      width:48px; height:48px;              /* uniform button size */
+      display:inline-grid; place-items:center;
+      border-radius:9999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.05);
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .icon-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.22);
+    }
+    .icon-btn img{
+      width:36px; height:36px;              /* consistent icon size */
+      display:block;
+      object-fit:contain;
+    }
+
+    /* Testimonials (rotator + fade) */
     #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
     #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:190px; padding:.25rem 0; }
-    #testimonials .layer{ position:absolute; inset:0; opacity:0; transition:opacity .45s ease; }
-    #testimonials .layer.is-active{ opacity:1; }
-    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; justify-content:center; }
-    #testimonials .t-dot{ width:10px; height:10px; border-radius:9999px; border:none; cursor:pointer; background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease; }
-    #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
-    #testimonials .t-dot:focus-visible{ outline:2px solid #fbbf24; outline-offset:2px; }
-    #testimonials .swipe-hint{ display:block; text-align:center; margin-top:.35rem; color:var(--muted); font-size:.85rem; opacity:.85; }
-    @media (hover: hover) and (pointer: fine) { #testimonials .swipe-hint { display:none; } }
-    @media (max-width:480px){ #testimonials .fade-wrap{ min-height:210px; } #testimonials blockquote{ font-size:.98rem; line-height:1.55; } }
+    #testimonials .fade-wrap{ position:relative; min-height:100px; }
+    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
+    #testimonials .is-fading{ opacity:0; }
+
+    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
+    #testimonials .t-dot{
+      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
+      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
+    }
+    #testimonials .t-dot[aria-current="true"]{
+      background:#fbbf24; transform:scale(1.1);
+    }
   </style>
 
   <!-- (Optional) Google Analytics – replace with your GA4 ID -->
@@ -97,10 +131,7 @@
     "url": "https://www.passivestaysolutions.com/",
     "logo": "https://www.passivestaysolutions.com/PS-logo.png",
     "image": "https://www.passivestaysolutions.com/PS-logo.png",
-    "sameAs": [
-      "https://www.facebook.com/share/17BpY5cwNb/",
-      "https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09"
-    ]
+    "sameAs": ["https://www.facebook.com/share/17BpY5cwNb/"]
   }
   </script>
   <script type="application/ld+json">
@@ -152,29 +183,52 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
-    <!-- Testimonials (crossfade + swipeable) -->
+    <!-- NEW: Testimonials (auto-rotating with fade) -->
     <div class="card" id="testimonials">
       <h2>What People Say About Us</h2>
-      <div class="fade-wrap" aria-live="polite">
-        <!-- Layer A starts visible with content so there's never a blank state -->
-        <figure class="layer is-active" id="t-layer-a">
-          <blockquote id="t-quote-a">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
-          <figcaption id="t-author-a">— Evelyn Carter</figcaption>
-        </figure>
-        <!-- Layer B will be populated during crossfades -->
-        <figure class="layer" id="t-layer-b">
-          <blockquote id="t-quote-b"></blockquote>
-          <figcaption id="t-author-b"></figcaption>
+
+      <div class="fade-wrap">
+        <figure class="fade-el">
+          <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
+          <figcaption id="t-author">— Evelyn Carter</figcaption>
         </figure>
       </div>
+
       <div class="t-dots" role="tablist" aria-label="Testimonials">
-        <button class="t-dot" role="tab" aria-label="Show testimonial 1" aria-selected="true" aria-current="true"></button>
-        <button class="t-dot" role="tab" aria-label="Show testimonial 2" aria-selected="false"></button>
-        <button class="t-dot" role="tab" aria-label="Show testimonial 3" aria-selected="false"></button>
-        <button class="t-dot" role="tab" aria-label="Show testimonial 4" aria-selected="false"></button>
-        <button class="t-dot" role="tab" aria-label="Show testimonial 5" aria-selected="false"></button>
+        <button class="t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show testimonial 1"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
+        <button class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
       </div>
-      <div class="swipe-hint" aria-hidden="true">Swipe or drag to navigate</div>
+    </div>
+
+    <div id="contact" class="card">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
+    </div>
+
+    <div id="about" class="card">
+      <h2>About Daniel</h2>
+      <p>Daniel grew up immersed in the construction industry, where he built a strong work ethic and deep respect for quality housing. Those early experiences gave him practical knowledge of the building trades and an appreciation for well-maintained properties.</p>
+      <p>After marrying into a family with a rich legacy in the military and healthcare, Daniel saw firsthand the unique challenges faced by traveling healthcare workers, patients, and military personnel. His perspective became deeply personal when his father was diagnosed with Alpha-1 Antitrypsin Deficiency and required a double lung transplant. This journey highlighted the urgent need for safe, reliable housing during times of transition.</p>
+      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers—while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
+    </div>
+
+    <div class="card" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <details class="faq">
+        <summary class="faq-q">Do I still get paid rent if the home is unoccupied?</summary>
+        <div>Yes absolutely! You will receive rent regardless of occupancy.</div>
+      </details>
+      <details class="faq">
+        <summary class="faq-q">Who Would Be Staying In My Property?</summary>
+        <div>Our guests are business and leisure travelers seeking something different. We deliver the “un-hotel” experience to our guests.</div>
+      </details>
+      <details class="faq">
+        <summary class="faq-q">How Do I See If My Property Will Qualify?</summary>
+        <div>Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!</div>
+      </details>
     </div>
   </main>
 
@@ -182,14 +236,14 @@
     <div class="container">
       <div class="footer-row">
         <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
-          <img src="Email.png" alt="Email Passive Stay Solutions" width="36" height="36" loading="lazy">
+          <img src="Email.png" alt="Email icon" width="36" height="36" loading="lazy">
         </a>
         <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow Passive Stay Solutions on Facebook">
-          <img src="Facebook.png" alt="Follow Passive Stay Solutions on Facebook" width="36" height="36" loading="lazy">
+          <img src="Facebook.png" alt="Facebook icon" width="36" height="36" loading="lazy">
         </a>
-        <!-- NEW: X / Twitter CTA -->
+        <!-- New X button -->
         <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow Passive Stay Solutions on X (Twitter)">
-          <img src="X.png" alt="Follow Passive Stay Solutions on X (Twitter)" width="36" height="36" loading="lazy">
+          <img src="X.png" alt="X (Twitter) icon" width="36" height="36" loading="lazy">
         </a>
       </div>
       © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships |
@@ -199,111 +253,52 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  <!-- Testimonials Rotator (crossfade + swipe) -->
+  <!-- Testimonials Rotator (fade) -->
   <script>
-  (function () {
-    const items = [
-      { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
-      { quote: "I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.", author: "— David Martinez" },
-      { quote: "The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.", author: "— Sophia Nguyen" },
-      { quote: "I used to budget for surprise repairs and lost rent—now it’s steady income and zero stress. The property actually looks better month over month.", author: "— Marcus Reed" },
-      { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
-    ];
+    (function(){
+      const items = [
+        { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
+        { quote: "I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.", author: "— David Martinez" },
+        { quote: "The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.", author: "— Sophia Nguyen" },
+        { quote: "I used to budget for surprise repairs and lost rent—now it’s steady income and zero stress. The property actually looks better month over month.", author: "— Marcus Reed" },
+        { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
+      ];
 
-    const card   = document.getElementById('testimonials');
-    if (!card) return;
+      const wrap = document.querySelector('#testimonials .fade-wrap');
+      const fig = wrap.querySelector('figure');
+      const q = document.getElementById('t-quote');
+      const a = document.getElementById('t-author');
+      const dots = Array.from(document.querySelectorAll('#testimonials .t-dot'));
+      const card = document.getElementById('testimonials');
 
-    const dots   = Array.from(card.querySelectorAll('.t-dot'));
-    const layerA = document.getElementById('t-layer-a');
-    const layerB = document.getElementById('t-layer-b');
-    const qa = document.getElementById('t-quote-a');
-    const aa = document.getElementById('t-author-a');
-    const qb = document.getElementById('t-quote-b');
-    const ab = document.getElementById('t-author-b');
+      let i = 0, timer = null, delay = 6000, anim = 450;
 
-    let i = 0, timer = null, activeIsA = true;
-    const delay = 6000;
-
-    function updateDots(idx){
-      dots.forEach((d, j) => {
-        const on = j === idx;
-        d.setAttribute('aria-selected', on ? 'true' : 'false');
-        if (on) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
-      });
-    }
-
-    function setContent(useA, idx){
-      const it = items[idx];
-      const text = "“" + it.quote + "”";
-      if (useA) { qa.textContent = text; aa.textContent = it.author; }
-      else      { qb.textContent = text; ab.textContent = it.author; }
-    }
-
-    function crossfadeTo(idx){
-      const nextIsA = !activeIsA;
-      setContent(nextIsA, idx);
-      if (nextIsA){ layerA.classList.add('is-active'); layerB.classList.remove('is-active'); }
-      else        { layerB.classList.add('is-active'); layerA.classList.remove('is-active'); }
-      activeIsA = nextIsA;
-      updateDots(idx);
-    }
-
-    function goTo(idx){ i = (idx + items.length) % items.length; crossfadeTo(i); start(); }
-    function next(){ goTo(i + 1); }
-    function prev(){ goTo(i - 1); }
-    function start(){ stop(); timer = setInterval(next, delay); }
-    function stop(){ if (timer) { clearInterval(timer); timer = null; } }
-
-    // Init (Layer A already has item 0 content in HTML)
-    updateDots(i);
-    start();
-
-    // Dots
-    dots.forEach((d, j) => d.addEventListener('click', () => goTo(j)));
-
-    // Pause on hover/focus
-    card.addEventListener('mouseenter', stop);
-    card.addEventListener('mouseleave', start);
-    card.addEventListener('focusin', stop);
-    card.addEventListener('focusout', start);
-
-    // Swipe / drag
-    let startX = 0, startY = 0, isTouch = false, moved = false;
-
-    function onStart(e){
-      isTouch = e.type === 'touchstart';
-      const p = isTouch ? e.touches[0] : e;
-      startX = p.clientX; startY = p.clientY; moved = false;
-      stop();
-      card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, { passive:true });
-      card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-      if(!isTouch) card.addEventListener('mouseleave', onEnd);
-    }
-
-    function onMove(e){
-      const p = isTouch ? e.touches[0] : e;
-      const dx = p.clientX - startX;
-      const dy = p.clientY - startY;
-      moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
-    }
-
-    function onEnd(e){
-      card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-      card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-      if(!isTouch) card.removeEventListener('mouseleave', onEnd);
-
-      if(moved){
-        const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
-        const endX = p ? p.clientX : startX;
-        const dx = endX - startX;
-        if(dx < 0) next(); else if(dx > 0) prev();
+      function render(idx){
+        fig.classList.add('is-fading');
+        setTimeout(() => {
+          q.textContent = "“" + items[idx].quote + "”";
+          a.textContent = items[idx].author;
+          dots.forEach((d, j) => {
+            const active = j === idx;
+            d.setAttribute('aria-selected', active ? 'true' : 'false');
+            d.toggleAttribute('aria-current', active);
+          });
+          fig.classList.remove('is-fading');
+        }, anim);
       }
-      start();
-    }
 
-    card.addEventListener('touchstart', onStart, { passive:true });
-    card.addEventListener('mousedown', onStart);
-  })();
+      function next(){ i = (i + 1) % items.length; render(i); }
+      function start(){ stop(); timer = setInterval(next, delay); }
+      function stop(){ if (timer) clearInterval(timer); timer = null; }
+
+      dots.forEach((d, j) => d.addEventListener('click', () => { i = j; render(i); start(); }));
+      card.addEventListener('mouseenter', stop);
+      card.addEventListener('mouseleave', start);
+      card.addEventListener('focusin', stop);
+      card.addEventListener('focusout', start);
+
+      render(i); start();
+    })();
   </script>
 
   <!-- FAQ Structured Data (SEO) -->
