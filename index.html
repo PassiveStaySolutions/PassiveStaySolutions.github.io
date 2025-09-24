@@ -103,13 +103,87 @@
     }
     #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
 
-    /* Video inside card */
+    /* ---- Video Card Overrides & UI ---- */
+
+    /* Remove PS logo overlay only on the video card */
+    .video-card::before { content:none; }
+
+    /* Thumbnail-as-button */
+    .video-thumb {
+      position:relative;
+      display:inline-block;
+      border:none;
+      background:none;
+      padding:0;
+      cursor:pointer;
+      width:100%;
+      max-width:760px;        /* make the button/thumbnail smaller than full width */
+    }
+    .video-thumb img {
+      width:100%;
+      height:auto;
+      border-radius:8px;
+      display:block;
+    }
+    .play-btn {
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:64px; height:64px;          /* smaller play button */
+      border-radius:9999px;
+      display:grid; place-items:center;
+      font-size:28px; line-height:1;
+      color:#fff;
+      background:rgba(0,0,0,.6);
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .12s ease, background .12s ease;
+    }
+    .video-thumb:hover .play-btn { transform:translate(-50%,-50%) scale(1.05); background:rgba(0,0,0,.7); }
+
+    /* Keep spacing consistent with cards */
+    .video-card h2 { margin-bottom:.5rem; }
+
+    /* Modal (lightbox) */
+    .video-modal {
+      display:none;
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.8);
+      z-index:2000;
+      padding:1rem;
+      overflow:auto;
+    }
+    .video-modal[open] { display:grid; place-items:center; }
+
+    .video-content {
+      position:relative;
+      width:min(900px, 96vw);
+    }
+    .video-content video {
+      width:100%;
+      height:auto;
+      border-radius:10px;
+      display:block;
+      background:#000;
+    }
+    .video-close {
+      position:absolute;
+      top:-44px; right:0;
+      display:inline-grid; place-items:center;
+      width:36px; height:36px;
+      border-radius:9999px;
+      background:rgba(255,255,255,.15);
+      color:#fff; font-size:22px; line-height:1;
+      cursor:pointer;
+    }
+    .video-close:hover { background:rgba(255,255,255,.25); }
+
+    /* Video inside a card if we ever embed it again */
     .video-card video{
       width:100%;
       height:auto;
       border-radius:8px;
       display:block;
-      margin-top:.75rem; /* spacing between heading and video */
+      margin-top:.75rem;
     }
   </style>
 
@@ -161,13 +235,15 @@
 
   <main class="container">
 
-        <!-- 🎥 Video Section -->
+    <!-- 🎥 Video Section -->
     <div class="card video-card">
       <h2>How It Works</h2>
-      <video controls playsinline poster="Howitworks.png">
-        <source src="PSSVideo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+
+      <!-- Thumbnail button (uses Howitworks.png) -->
+      <button class="video-thumb" aria-label="Play How It Works video" onclick="openVideo()" title="Play video">
+        <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
+        <span class="play-btn" aria-hidden="true">▶</span>
+      </button>
     </div>
 
     <div class="card">
@@ -258,6 +334,17 @@
   </footer>
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  <!-- Video Modal -->
+  <dialog id="videoModal" class="video-modal" aria-label="How It Works video dialog">
+    <div class="video-content">
+      <button class="video-close" aria-label="Close video" onclick="closeVideo()">✕</button>
+      <video id="howItWorksVideo" controls playsinline>
+        <source src="PSSVideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </dialog>
 
   <!-- Testimonials Rotator (fade + swipe) -->
   <script>
@@ -354,6 +441,35 @@
 
       card.addEventListener('touchstart', onStart, {passive:true});
       card.addEventListener('mousedown', onStart);
+    })();
+
+    // --- Video modal controls ---
+    function openVideo(){
+      const dlg = document.getElementById('videoModal');
+      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+      const vid = document.getElementById('howItWorksVideo');
+      if (vid) { vid.currentTime = 0; vid.play().catch(()=>{}); }
+    }
+    function closeVideo(){
+      const dlg = document.getElementById('videoModal');
+      const vid = document.getElementById('howItWorksVideo');
+      if (vid) vid.pause();
+      if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
+    }
+
+    // Close when clicking backdrop (for <dialog>)
+    (function(){
+      const dlg = document.getElementById('videoModal');
+      if (!dlg) return;
+      dlg.addEventListener('click', (e) => {
+        const rect = dlg.querySelector('.video-content')?.getBoundingClientRect();
+        if (!rect) return;
+        const inContent = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+        if (!inContent) closeVideo();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dlg.hasAttribute('open')) closeVideo();
+      });
     })();
   </script>
 
