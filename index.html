@@ -102,6 +102,15 @@
       background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
     }
     #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
+
+    /* Video inside card */
+    .video-card video{
+      width:100%;
+      height:auto;
+      border-radius:8px;
+      display:block;
+      margin-top:.75rem; /* spacing between heading and video */
+    }
   </style>
 
   <!-- (Optional) Google Analytics -->
@@ -151,6 +160,16 @@
   </header>
 
   <main class="container">
+
+    <!-- 🎥 Video Section -->
+    <div class="card video-card">
+      <h2>How It Works</h2>
+      <video controls playsinline poster="https://github.com/PassiveStaySolutions/PassiveStaySolutions.github.io/blob/main/social-banner.png?raw=true">
+        <source src="PSSVideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
     <div class="card">
       <h1>Corporate Housing Partnerships</h1>
       <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients receiving treatment at nearby hospitals, business professionals, and traveling military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
