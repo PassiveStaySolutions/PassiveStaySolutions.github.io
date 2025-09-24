@@ -37,7 +37,7 @@
   <link rel="shortcut icon" href="logo_32x32.png">
 
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; }
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
@@ -52,7 +52,7 @@
     .card{ position:relative; background:rgba(17,24,39,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
-    h1,h2{ color:#fbbf24; margin:0 0 .6rem; }
+    h1,h2{ color:var(--heading); margin:0 0 .6rem; }
     a{ color:var(--accent); text-decoration:none; }
 
     .trust-badge{
@@ -71,7 +71,7 @@
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
 
-    /* CTA buttons (no black rim) */
+    /* CTA icon buttons (footer) */
     .icon-btn{
       width:48px; height:48px;
       display:inline-grid; place-items:center;
@@ -90,20 +90,7 @@
       object-fit:contain;
     }
 
-    /* Testimonials (fade + swipe) */
-    #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
-    #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:100px; }
-    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
-    #testimonials .is-fading{ opacity:0; }
-    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
-    #testimonials .t-dot{
-      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
-      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
-    }
-    #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
-
-    /* ---- Video Card Overrides & Modal ---- */
+    /* --- Video card & modal --- */
 
     /* Remove PS logo overlay only on the video card */
     .video-card::before { content:none; }
@@ -146,18 +133,26 @@
     }
     .video-close:hover { background:rgba(0,0,0,.75); }
     .video-close svg { display:block; }
-  </style>
 
-  <!-- (Optional) Google Analytics -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
-  -->
+    /* Text CTA buttons that appear after video ends */
+    .video-cta{
+      display:none; /* becomes flex when video ends */
+      gap:.6rem; justify-content:center; align-items:center; flex-wrap:wrap;
+      margin-top:.9rem;
+    }
+    .btn{
+      display:inline-block;
+      padding:.55rem .95rem;
+      border-radius:9999px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.1);
+      background:var(--accent);
+      color:#0b1222; /* dark text for contrast on accent */
+      transition:filter .15s ease, transform .12s ease;
+      text-decoration:none;
+    }
+    .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
+  </style>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -198,9 +193,8 @@
 
   <main class="container">
 
-    <!-- 🎥 Video Section (unchanged behavior; click thumb opens modal) -->
+    <!-- 🎥 Video Section (header removed as requested) -->
     <div class="card video-card">
-      <h2>How It Works</h2>
       <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
       </button>
@@ -300,7 +294,7 @@
 
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
-  <!-- Video Modal (unchanged) -->
+  <!-- Video Modal (with text CTA buttons) -->
   <dialog id="videoModal" class="video-modal" aria-label="How It Works video dialog">
     <div class="video-content">
       <button class="video-close" onclick="closeVideo()" aria-label="Close video">
@@ -314,6 +308,13 @@
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+
+      <!-- CTA text buttons (appear after video ends) -->
+      <div id="videoCTA" class="video-cta">
+        <a class="btn" href="mailto:Daniel@passivestaysolutions.com">Email Us</a>
+        <a class="btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a class="btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+      </div>
     </div>
   </dialog>
 
@@ -414,11 +415,13 @@
       card.addEventListener('mousedown', onStart);
     })();
 
-    // --- Video modal controls (unchanged) ---
+    // --- Video modal controls & CTA reveal ---
     const dlg = document.getElementById('videoModal');
     const vid = document.getElementById('howItWorksVideo');
+    const cta = document.getElementById('videoCTA');
 
     function openVideo(){
+      if (cta) cta.style.display = 'none'; // hide CTAs until video ends
       if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
       if (vid) { vid.currentTime = 0; vid.play().catch(()=>{}); }
     }
@@ -427,9 +430,15 @@
       if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
     }
 
-    // Close when clicking backdrop (for <dialog>)
+    // Reveal text CTA buttons when video ends
+    if (vid) {
+      vid.addEventListener('ended', () => {
+        if (cta) cta.style.display = 'flex';
+      });
+    }
+
+    // Close when clicking backdrop
     (function(){
-      const dlg = document.getElementById('videoModal');
       if (!dlg) return;
       dlg.addEventListener('click', (e) => {
         const rect = dlg.querySelector('.video-content')?.getBoundingClientRect();
@@ -437,6 +446,7 @@
         const inContent = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
         if (!inContent) closeVideo();
       });
+      // Close with Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && dlg.hasAttribute('open')) closeVideo();
       });
