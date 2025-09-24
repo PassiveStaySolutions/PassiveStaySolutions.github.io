@@ -3,205 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- SEO -->
-  <title>Passive Stay Solutions LLC | Corporate Housing for Nurses, Doctors, Patients & Professionals</title>
-  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://www.passivestaysolutions.com/">
-  <link rel="preload" as="image" href="Livingroom.jpeg"/>
-
-  <!-- Open Graph / Facebook / LinkedIn -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Passive Stay Solutions LLC">
-  <meta property="og:url" content="https://www.passivestaysolutions.com/">
-  <meta property="og:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
-  <meta property="og:description" content="No fees, guaranteed rent, and responsible tenants. We partner with landlords, property managers, and realtors to provide hassle-free corporate housing.">
-  <meta property="og:image" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
-  <meta property="og:image:secure_url" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter (X) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://www.passivestaysolutions.com/">
-  <meta name="twitter:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
-  <meta name="twitter:description" content="No fees, guaranteed rent, and responsible tenants. We partner with landlords, property managers, and realtors to provide hassle-free corporate housing.">
-  <meta name="twitter:image" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
-
-  <!-- Favicons / App icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="logo_32x32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="logo_256x256.png">
-  <link rel="apple-touch-icon" href="logo_256x256.png">
-  <link rel="shortcut icon" href="logo_32x32.png">
+  <title>Passive Stay Solutions LLC | Corporate Housing</title>
+  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing. No fees, guaranteed rent, and responsible tenants.">
 
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; }
-    body{
-      margin:0; font-family:system-ui,sans-serif; color:var(--text);
-      background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
-    }
-    .container{ width:min(1100px,92%); margin:0 auto; }
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
+    body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);}
+    .container{width:min(1100px,92%);margin:0 auto;}
 
-    header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
-    .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
-    .logo-img{ height:36px; width:auto; }
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(8px);background:rgba(3,7,18,.6);border-bottom:1px solid rgba(255,255,255,.06);}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;}
+    .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;}
+    .logo-img{height:36px;width:auto;}
+    a{color:var(--accent);text-decoration:none;}
 
-    .card{ position:relative; background:rgba(17,24,39,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
-    .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
-    .card *{ position:relative; z-index:1; }
-    h1,h2{ color:#fbbf24; margin:0 0 .6rem; }
-    a{ color:var(--accent); text-decoration:none; }
+    .card{position:relative;background:rgba(17,24,39,.92);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.2rem;margin:1rem 0;overflow:hidden;}
+    .card::before{content:"";position:absolute;inset:0;background:url('PS-logo.png') center/300px no-repeat;opacity:.22;pointer-events:none;}
+    .card *{position:relative;z-index:1;}
+    h1,h2{color:var(--heading);margin:0 0 .6rem;}
 
-    .trust-badge{
-      display:inline-block; background:#facc15; color:#111827; font-weight:700;
-      border-radius:8px; padding:.35rem .6rem; margin-top:.75rem;
-    }
-
-    details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{
-      cursor:pointer; list-style:none; font-weight:700;
-      padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18);
-    }
-    summary.faq-q::-webkit-details-marker{ display:none; }
-    details.faq > div{ margin-top:.65rem; }
-
-    footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
-    .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
-
-    /* CTA buttons (no black rim) */
+    /* Footer + icon buttons (reused in modal CTA) */
+    footer{padding:2rem 0;background:rgba(3,7,18,.75);color:var(--muted);font-size:.9rem;text-align:center;}
     .icon-btn{
-      width:48px; height:48px;
-      display:inline-grid; place-items:center;
-      border-radius:9999px;
-      overflow:hidden;
-      background:rgba(255,255,255,.05);
-      transition:transform .12s ease, background .12s ease;
+      width:48px;height:48px;display:inline-grid;place-items:center;border-radius:9999px;
+      overflow:hidden;background:rgba(255,255,255,.05);transition:transform .12s ease,background .12s ease;border:none;cursor:pointer;
     }
-    .icon-btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-    .icon-btn img{
-      width:36px; height:36px;
-      display:block;
-      object-fit:contain;
-    }
+    .icon-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);}
+    .icon-btn img{width:36px;height:36px;display:block;object-fit:contain;}
+    .footer-row,.video-cta{display:flex;gap:.75rem;justify-content:center;align-items:center;margin:1rem 0;}
 
-    /* Testimonials (fade + swipe) */
-    #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
-    #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:100px; }
-    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
-    #testimonials .is-fading{ opacity:0; }
-    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
-    #testimonials .t-dot{
-      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
-      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
-    }
-    #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
-
-    /* ---- Video Card Overrides & UI ---- */
-
-    /* Remove PS logo overlay only on the video card */
-    .video-card::before { content:none; }
-    .video-card { text-align:center; }
-
-    /* Thumbnail-as-button (no overlay icon) */
-    .video-thumb {
-      position:relative;
-      display:inline-block;
-      border:none;
-      background:none;
-      padding:0;
-      cursor:pointer;
-      width:100%;
-      max-width:400px;  /* smaller overall size */
-    }
-    .video-thumb img {
-      width:100%;
-      height:auto;
-      border-radius:8px;
-      display:block;
-    }
+    /* Video card overrides */
+    .video-card::before{content:none;}  /* remove logo overlay on this card only */
+    .video-card{text-align:center;}
+    .video-thumb{display:inline-block;border:none;background:none;padding:0;cursor:pointer;width:100%;max-width:400px;}
+    .video-thumb img{width:100%;height:auto;border-radius:8px;display:block;}
 
     /* Modal (lightbox) */
-    .video-modal {
-      display:none;
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.8);
-      z-index:2000;
-      padding:1rem;
-      overflow:auto;
-    }
-    .video-modal[open] { display:grid; place-items:center; }
+    .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;place-items:center;padding:1rem;}
+    .video-modal[open]{display:grid;}
+    .video-content{position:relative;width:min(900px,96vw);}
+    .video-content video{width:100%;border-radius:10px;display:block;background:#000;}
 
-    .video-content {
-      position:relative;
-      width:min(900px, 96vw);
+    /* Close button (SVG X) inside top-right of video */
+    .video-close{
+      position:absolute;top:8px;right:8px;width:32px;height:32px;border:none;border-radius:50%;
+      background:rgba(0,0,0,.55);cursor:pointer;display:grid;place-items:center;transition:background .15s ease;
     }
-    .video-content video {
-      width:100%;
-      height:auto;
-      border-radius:10px;
-      display:block;
-      background:#000;
-    }
-    .video-close {
-      position:absolute;
-      top:-44px; right:0;
-      display:inline-grid; place-items:center;
-      width:36px; height:36px;
-      border-radius:9999px;
-      background:rgba(255,255,255,.15);
-      color:#fff; font-size:18px; font-weight:800; line-height:1;
-      cursor:pointer;
-    }
-    .video-close:hover { background:rgba(255,255,255,.25); }
+    .video-close:hover{background:rgba(0,0,0,.75);}
+    .video-close svg{display:block}
   </style>
-
-  <!-- (Optional) Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-  </script>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Passive Stay Solutions LLC",
-    "url": "https://www.passivestaysolutions.com/",
-    "logo": "https://www.passivestaysolutions.com/PS-logo.png",
-    "image": "https://www.passivestaysolutions.com/PS-logo.png",
-    "sameAs": ["https://www.facebook.com/share/17BpY5cwNb/"]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Passive Stay Solutions LLC",
-    "url": "https://www.passivestaysolutions.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.passivestaysolutions.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
 </head>
 <body>
   <header>
     <div class="container nav">
       <div class="brand">
-        <img src="PS-logo.png" alt="Passive Stay Solutions logo" class="logo-img" width="36" height="36" loading="eager">
+        <img src="PS-logo.png" alt="Passive Stay Solutions logo" class="logo-img">
         <div>Passive Stay Solutions LLC</div>
       </div>
       <a href="#contact">Partner With Us — No Fees</a>
@@ -209,81 +65,18 @@
   </header>
 
   <main class="container">
-
     <!-- 🎥 Video Section -->
     <div class="card video-card">
-      <!-- Header removed as requested -->
-      <button class="video-thumb" aria-label="Play video" onclick="openVideo()" title="Play video">
-        <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
+      <h2>How It Works</h2>
+      <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video">
+        <img src="Howitworks.png" alt="How It Works video cover">
       </button>
     </div>
 
+    <!-- Example content block (keep your existing sections here) -->
     <div class="card">
       <h1>Corporate Housing Partnerships</h1>
-      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients receiving treatment at nearby hospitals, business professionals, and traveling military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
-      <p>There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
-      <span class="trust-badge">No fees • Guaranteed monthly rent</span>
-    </div>
-
-    <div class="card">
-      <h2>What We’re Looking To Do</h2>
-      <p>Partner with landlords, property managers, and realtors to lease properties for high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
-    </div>
-
-    <div class="card">
-      <h2>Benefits of Working With Us</h2>
-      <ul>
-        <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
-        <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
-        <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
-        <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
-      </ul>
-      <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
-    </div>
-
-    <div class="card" id="testimonials">
-      <h2>What People Say About Us</h2>
-      <div class="fade-wrap" aria-live="polite">
-        <figure class="fade-el">
-          <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
-          <figcaption id="t-author">— Evelyn Carter</figcaption>
-        </figure>
-      </div>
-      <div class="t-dots" role="tablist" aria-label="Testimonials">
-        <button type="button" class="t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show testimonial 1"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
-      </div>
-    </div>
-
-    <div id="contact" class="card">
-      <h2>Contact</h2>
-      <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
-    </div>
-
-    <div id="about" class="card">
-      <h2>About Daniel</h2>
-      <p>Daniel grew up immersed in the construction industry, where he built a strong work ethic and deep respect for quality housing. Those early experiences gave him practical knowledge of the building trades and an appreciation for well-maintained properties.</p>
-      <p>After marrying into a family with a rich legacy in the military and healthcare, Daniel saw firsthand the unique challenges faced by traveling healthcare workers, patients, and military personnel. His perspective became deeply personal when his father was diagnosed with Alpha-1 Antitrypsin Deficiency and required a double lung transplant. This journey highlighted the urgent need for safe, reliable housing during times of transition.</p>
-      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers—while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
-    </div>
-
-    <div class="card" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <details class="faq">
-        <summary class="faq-q">Do I still get paid rent if the home is unoccupied?</summary>
-        <div>Yes absolutely! You will receive rent regardless of occupancy.</div>
-      </details>
-      <details class="faq">
-        <summary class="faq-q">Who Would Be Staying In My Property?</summary>
-        <div>Our guests are business and leisure travelers seeking something different. We deliver the “un-hotel” experience to our guests.</div>
-      </details>
-      <details class="faq">
-        <summary class="faq-q">How Do I See If My Property Will Qualify?</summary>
-        <div>Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!</div>
-      </details>
+      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
     </div>
   </main>
 
@@ -291,183 +84,88 @@
     <div class="container">
       <div class="footer-row">
         <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
-          <img src="Email.png" alt="Email icon" width="36" height="36" loading="lazy">
+          <img src="Email.png" alt="Email">
         </a>
-        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow Passive Stay Solutions on Facebook">
-          <img src="Facebook.png" alt="Facebook icon" width="36" height="36" loading="lazy">
+        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
+          <img src="Facebook.png" alt="Facebook">
         </a>
-        <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow Passive Stay Solutions on X (Twitter)">
-          <img src="X.png" alt="X (Twitter) icon" width="36" height="36" loading="lazy">
+        <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
+          <img src="X.png" alt="X (Twitter)">
         </a>
       </div>
-      © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships |
-      <a href="PassiveStaySolutions_OnePager.pdf" download>Download PDF One-Pager</a>
+      © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-
-  <!-- Video Modal -->
-  <dialog id="videoModal" class="video-modal" aria-label="Video dialog">
+  <!-- Modal -->
+  <dialog id="videoModal" class="video-modal" aria-label="How It Works video">
     <div class="video-content">
-      <button class="video-close" aria-label="Close video" onclick="closeVideo()">X</button>
+      <button class="video-close" onclick="closeVideo()" aria-label="Close video">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
       <video id="howItWorksVideo" controls playsinline>
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+
+      <!-- CTA row (hidden until video ends) -->
+      <div id="videoCTA" class="video-cta" style="display:none">
+        <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
+          <img src="Email.png" alt="Email">
+        </a>
+        <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
+          <img src="Facebook.png" alt="Facebook">
+        </a>
+        <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
+          <img src="X.png" alt="X (Twitter)">
+        </a>
+      </div>
     </div>
   </dialog>
 
-  <!-- Testimonials Rotator (fade + swipe) -->
   <script>
-    (function(){
-      const items = [
-        { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
-        { quote: "I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.", author: "— David Martinez" },
-        { quote: "The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.", author: "— Sophia Nguyen" },
-        { quote: "I used to budget for surprise repairs and lost rent—now it’s steady income and zero stress. The property actually looks better month over month.", author: "— Marcus Reed" },
-        { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
-      ];
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-      const card = document.getElementById('testimonials');
-      if (!card) return;
+    const dlg = document.getElementById('videoModal');
+    const vid = document.getElementById('howItWorksVideo');
+    const cta = document.getElementById('videoCTA');
 
-      const wrap = card.querySelector('.fade-wrap');
-      const fig  = wrap?.querySelector('figure');
-      const q    = document.getElementById('t-quote');
-      const a    = document.getElementById('t-author');
-      const dots = Array.from(card.querySelectorAll('.t-dot'));
-      if (!wrap || !fig || !q || !a || dots.length === 0) return;
-
-      let i = 0, timer = null;
-      const delay = 6000;
-      const anim  = 450;
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function render(idx){
-        fig.classList.add('is-fading');
-        setTimeout(() => {
-          q.textContent = "“" + items[idx].quote + "”";
-          a.textContent = items[idx].author;
-          dots.forEach((d, j) => {
-            const active = j === idx;
-            d.setAttribute('aria-selected', active ? 'true' : 'false');
-            if (active) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
-          });
-          fig.classList.remove('is-fading');
-        }, anim);
-      }
-
-      function next(){ i = (i + 1) % items.length; render(i); }
-      function prev(){ i = (i - 1 + items.length) % items.length; render(i); }
-      function goTo(idx){ i = (idx + items.length) % items.length; render(i); start(); }
-
-      function start(){ stop(); if (!prefersReduced) timer = setInterval(next, delay); }
-      function stop(){ if (timer) { clearInterval(timer); timer = null; } }
-
-      // Init
-      render(i);
-      start();
-
-      // Dots click
-      dots.forEach((d, j) => d.addEventListener('click', () => goTo(j)));
-
-      // Pause on hover/focus/visibility change
-      card.addEventListener('mouseenter', stop);
-      card.addEventListener('mouseleave', start);
-      card.addEventListener('focusin', stop);
-      card.addEventListener('focusout', start);
-      document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); }, {passive:true});
-
-      // --- SWIPE / DRAG (touch & mouse) ---
-      let startX = 0, startY = 0, isTouch = false, moved = false;
-
-      function onStart(e){
-        isTouch = e.type === 'touchstart';
-        const p = isTouch ? e.touches[0] : e;
-        startX = p.clientX; startY = p.clientY; moved = false;
-        stop();
-        card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, {passive:true});
-        card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.addEventListener('mouseleave', onEnd);
-      }
-      function onMove(e){
-        const p = isTouch ? e.touches[0] : e;
-        const dx = p.clientX - startX;
-        const dy = p.clientY - startY;
-        moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
-      }
-      function onEnd(e){
-        card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-        card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.removeEventListener('mouseleave', onEnd);
-
-        if(moved){
-          const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
-          const endX = p ? p.clientX : startX;
-          const dx = endX - startX;
-          if (dx < 0) next(); else if (dx > 0) prev();
-        }
-        start();
-      }
-
-      card.addEventListener('touchstart', onStart, {passive:true});
-      card.addEventListener('mousedown', onStart);
-    })();
-
-    // --- Video modal controls ---
     function openVideo(){
-      const dlg = document.getElementById('videoModal');
-      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
-      const vid = document.getElementById('howItWorksVideo');
+      // reset CTA visibility each time
+      if (cta) cta.style.display = 'none';
+      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
       if (vid) { vid.currentTime = 0; vid.play().catch(()=>{}); }
     }
+
     function closeVideo(){
-      const dlg = document.getElementById('videoModal');
-      const vid = document.getElementById('howItWorksVideo');
       if (vid) vid.pause();
       if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
     }
 
-    // Close when clicking backdrop (for <dialog>)
-    (function(){
-      const dlg = document.getElementById('videoModal');
-      if (!dlg) return;
-      dlg.addEventListener('click', (e) => {
-        const rect = dlg.querySelector('.video-content')?.getBoundingClientRect();
-        if (!rect) return;
-        const inContent = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
-        if (!inContent) closeVideo();
+    // Show CTA row when video ends
+    if (vid) {
+      vid.addEventListener('ended', () => {
+        if (cta) cta.style.display = 'flex';
       });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && dlg.hasAttribute('open')) closeVideo();
-      });
-    })();
-  </script>
+    }
 
-  <!-- FAQ Structured Data (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"Do I still get paid rent if the home is unoccupied?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}
-      },
-      {
-        "@type":"Question",
-        "name":"Who would be staying in my property?",
-        "acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I see if my property will qualify?",
-        "acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}
-      }
-    ]
-  }
+    // Close by clicking backdrop (outside .video-content)
+    dlg.addEventListener('click', (e) => {
+      const content = dlg.querySelector('.video-content');
+      if (!content) return;
+      const rect = content.getBoundingClientRect();
+      const inContent = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+      if (!inContent) closeVideo();
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dlg.hasAttribute('open')) closeVideo();
+    });
   </script>
 </body>
 </html>
