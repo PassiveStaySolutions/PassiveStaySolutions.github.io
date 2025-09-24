@@ -114,9 +114,12 @@
       display:block;
     }
 
-    /* Modal (lightbox) */
-    .video-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:2000; place-items:center; padding:1rem; }
-    .video-modal[open]{ display:grid; }
+    /* Modal (div-based, not <dialog>) */
+    .video-modal {
+      display:none; position:fixed; inset:0; background:rgba(0,0,0,.8);
+      z-index:2000; place-items:center; padding:1rem;
+    }
+    .video-modal.is-open { display:grid; }
     .video-content { position:relative; width:min(900px, 96vw); }
     .video-content video { width:100%; height:auto; border-radius:10px; display:block; background:#000; }
 
@@ -292,10 +295,10 @@
     </div>
   </footer>
 
-  <!-- Video Modal (with text CTA buttons) -->
-  <dialog id="videoModal" class="video-modal" aria-label="How It Works video dialog">
+  <!-- Video Modal (div-based, not <dialog>) -->
+  <div id="videoOverlay" class="video-modal" role="dialog" aria-modal="true" aria-label="How It Works video dialog">
     <div class="video-content">
-      <button class="video-close" onclick="closeVideo()" aria-label="Close video">
+      <button class="video-close" aria-label="Close video">
         <!-- SVG X icon -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -314,14 +317,14 @@
         <a class="btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
       </div>
     </div>
-  </dialog>
+  </div>
 
   <!-- Scripts -->
   <script>
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Testimonials rotator
+    // Testimonials rotator (unchanged)
     (function(){
       const items = [
         { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
@@ -406,21 +409,32 @@
       card.addEventListener('mousedown', onStart);
     })();
 
-    // ----- Video modal controls & CTA reveal -----
-    const dlg = document.getElementById('videoModal');
+    // ----- Video modal controls (div-based) & CTA reveal -----
+    const overlay = document.getElementById('videoOverlay');
+    const closeBtn = overlay.querySelector('.video-close');
+    const content = overlay.querySelector('.video-content');
     const vid = document.getElementById('howItWorksVideo');
     const cta = document.getElementById('videoCTA');
 
-    // Make functions global so inline onclick works everywhere
+    function lockScroll(lock) {
+      if (lock) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
     window.openVideo = function(){
       if (cta) cta.style.display = 'none'; // hide CTAs until video ends
-      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+      overlay.classList.add('is-open');
+      lockScroll(true);
       if (vid) { vid.currentTime = 0; vid.play().catch(()=>{}); }
     };
 
     window.closeVideo = function(){
       if (vid) vid.pause();
-      if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
+      overlay.classList.remove('is-open');
+      lockScroll(false);
     };
 
     // Reveal text CTA buttons when video ends
@@ -430,21 +444,21 @@
       });
     }
 
-    // Close when clicking backdrop
-    dlg.addEventListener('click', (e) => {
-      const rect = dlg.querySelector('.video-content')?.getBoundingClientRect();
-      if (!rect) return;
-      const inContent = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
-      if (!inContent) window.closeVideo();
+    // Close when clicking backdrop (only if click is outside content)
+    overlay.addEventListener('click', (e) => {
+      if (!content.contains(e.target)) window.closeVideo();
     });
 
     // Close with Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && dlg.hasAttribute('open')) window.closeVideo();
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeVideo();
     });
 
-    // Extra safeguard: direct listener on the X button
-    document.querySelector('.video-close')?.addEventListener('click', window.closeVideo);
+    // Close button
+    closeBtn.addEventListener('click', window.closeVideo);
+
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
   <!-- FAQ Structured Data (SEO) -->
