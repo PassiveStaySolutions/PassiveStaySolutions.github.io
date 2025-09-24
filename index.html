@@ -3,48 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passive Stay Solutions LLC | Corporate Housing</title>
-  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing. No fees, guaranteed rent, and responsible tenants.">
+
+  <title>Passive Stay Solutions LLC | Corporate Housing for Nurses, Doctors, Patients & Professionals</title>
+  <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
+  <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <style>
-    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
-    body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);}
+    body{margin:0;font-family:system-ui,sans-serif;background:#0f172a;color:#e5e7eb;}
     .container{width:min(1100px,92%);margin:0 auto;}
-
-    header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(8px);background:rgba(3,7,18,.6);border-bottom:1px solid rgba(255,255,255,.06);}
+    header{position:sticky;top:0;background:rgba(3,7,18,.6);border-bottom:1px solid rgba(255,255,255,.06);}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;}
     .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;}
     .logo-img{height:36px;width:auto;}
-    a{color:var(--accent);text-decoration:none;}
+    a{color:#22d3ee;text-decoration:none;}
 
-    .card{position:relative;background:rgba(17,24,39,.92);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.2rem;margin:1rem 0;overflow:hidden;}
+    .card{background:rgba(17,24,39,.92);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.2rem;margin:1rem 0;position:relative;overflow:hidden;}
     .card::before{content:"";position:absolute;inset:0;background:url('PS-logo.png') center/300px no-repeat;opacity:.22;pointer-events:none;}
     .card *{position:relative;z-index:1;}
-    h1,h2{color:var(--heading);margin:0 0 .6rem;}
+    h1,h2{color:#fbbf24;margin:0 0 .6rem;}
+    ul{margin:.5rem 0 0 1.2rem}
 
-    /* Footer + icon buttons (reused in modal CTA) */
-    footer{padding:2rem 0;background:rgba(3,7,18,.75);color:var(--muted);font-size:.9rem;text-align:center;}
+    /* Video card override */
+    .video-card::before{content:none;} /* remove PS logo overlay */
+    .video-card{text-align:center;}
+    .video-thumb{display:inline-block;border:none;background:none;padding:0;cursor:pointer;width:100%;max-width:400px;}
+    .video-thumb img{width:100%;height:auto;border-radius:8px;display:block;}
+
+    /* Footer + icon buttons (also used in video CTA) */
+    footer{text-align:center;padding:2rem 0;background:rgba(3,7,18,.75);color:#94a3b8;font-size:.9rem;}
+    .footer-row,.video-cta{display:flex;gap:.75rem;justify-content:center;align-items:center;margin:1rem 0;}
     .icon-btn{
       width:48px;height:48px;display:inline-grid;place-items:center;border-radius:9999px;
       overflow:hidden;background:rgba(255,255,255,.05);transition:transform .12s ease,background .12s ease;border:none;cursor:pointer;
     }
     .icon-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);}
     .icon-btn img{width:36px;height:36px;display:block;object-fit:contain;}
-    .footer-row,.video-cta{display:flex;gap:.75rem;justify-content:center;align-items:center;margin:1rem 0;}
 
-    /* Video card overrides */
-    .video-card::before{content:none;}  /* remove logo overlay on this card only */
-    .video-card{text-align:center;}
-    .video-thumb{display:inline-block;border:none;background:none;padding:0;cursor:pointer;width:100%;max-width:400px;}
-    .video-thumb img{width:100%;height:auto;border-radius:8px;display:block;}
-
-    /* Modal (lightbox) */
+    /* Modal */
     .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;place-items:center;padding:1rem;}
     .video-modal[open]{display:grid;}
     .video-content{position:relative;width:min(900px,96vw);}
     .video-content video{width:100%;border-radius:10px;display:block;background:#000;}
 
-    /* Close button (SVG X) inside top-right of video */
+    /* Close button (SVG X) inside video corner */
     .video-close{
       position:absolute;top:8px;right:8px;width:32px;height:32px;border:none;border-radius:50%;
       background:rgba(0,0,0,.55);cursor:pointer;display:grid;place-items:center;transition:background .15s ease;
@@ -65,6 +66,7 @@
   </header>
 
   <main class="container">
+
     <!-- 🎥 Video Section -->
     <div class="card video-card">
       <h2>How It Works</h2>
@@ -73,24 +75,76 @@
       </button>
     </div>
 
-    <!-- Example content block (keep your existing sections here) -->
+    <!-- Hero / value -->
     <div class="card">
       <h1>Corporate Housing Partnerships</h1>
-      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
+      <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients receiving treatment at nearby hospitals, business professionals, and traveling military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
+      <p>There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
+      <span style="display:inline-block;background:#facc15;color:#111827;font-weight:700;border-radius:8px;padding:.35rem .6rem;margin-top:.6rem;">No fees • Guaranteed monthly rent</span>
     </div>
+
+    <!-- What we do -->
+    <div class="card">
+      <h2>What We’re Looking To Do</h2>
+      <p>Partner with landlords, property managers, and realtors to lease properties for high-quality corporate housing. Our approach ensures your property remains stress-free, well-maintained, and profitable. There are absolutely no fees, no costs — just hassle-free monthly rent while working with us.</p>
+    </div>
+
+    <!-- Benefits -->
+    <div class="card">
+      <h2>Benefits of Working With Us</h2>
+      <ul>
+        <li><strong>No Fees –</strong> Zero management or service costs. You receive hassle-free monthly rent.</li>
+        <li><strong>Responsible Tenants –</strong> Non-smokers, no pets, quiet professionals with demanding schedules.</li>
+        <li><strong>Property Care –</strong> Weekly professional cleaning, minor maintenance handled without burdening you.</li>
+        <li><strong>Light Use –</strong> Guests often eat out and work long hours, meaning appliances and utilities are gently used.</li>
+      </ul>
+      <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="card">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="card">
+      <h2>About Daniel</h2>
+      <p>Daniel grew up immersed in the construction industry, where he built a strong work ethic and deep respect for quality housing. Those early experiences gave him practical knowledge of the building trades and an appreciation for well-maintained properties.</p>
+      <p>After marrying into a family with a rich legacy in the military and healthcare, Daniel saw firsthand the unique challenges faced by traveling healthcare workers, patients, and military personnel. His perspective became deeply personal when his father was diagnosed with Alpha-1 Antitrypsin Deficiency and required a double lung transplant. This journey highlighted the urgent need for safe, reliable housing during times of transition.</p>
+      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers—while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="card" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <details class="faq">
+        <summary class="faq-q" style="cursor:pointer;font-weight:700;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,.18);list-style:none;">Do I still get paid rent if the home is unoccupied?</summary>
+        <div style="margin-top:.6rem;">Yes absolutely! You will receive rent regardless of occupancy.</div>
+      </details>
+      <details class="faq">
+        <summary class="faq-q" style="cursor:pointer;font-weight:700;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,.18);list-style:none;">Who Would Be Staying In My Property?</summary>
+        <div style="margin-top:.6rem;">Our guests are business and leisure travelers seeking something different. We deliver the “un-hotel” experience to our guests.</div>
+      </details>
+      <details class="faq">
+        <summary class="faq-q" style="cursor:pointer;font-weight:700;padding-bottom:.4rem;border-bottom:1px solid rgba(255,255,255,.18);list-style:none;">How Do I See If My Property Will Qualify?</summary>
+        <div style="margin-top:.6rem;">Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!</div>
+      </details>
+    </div>
+
   </main>
 
   <footer>
     <div class="container">
       <div class="footer-row">
         <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
-          <img src="Email.png" alt="Email">
+          <img src="Email.png" alt="Email icon">
         </a>
         <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
-          <img src="Facebook.png" alt="Facebook">
+          <img src="Facebook.png" alt="Facebook icon">
         </a>
         <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
-          <img src="X.png" alt="X (Twitter)">
+          <img src="X.png" alt="X (Twitter) icon">
         </a>
       </div>
       © <span id="y"></span> Passive Stay Solutions LLC • Corporate Housing Partnerships
@@ -101,26 +155,28 @@
   <dialog id="videoModal" class="video-modal" aria-label="How It Works video">
     <div class="video-content">
       <button class="video-close" onclick="closeVideo()" aria-label="Close video">
+        <!-- SVG X icon (no image file needed) -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
           <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
+
       <video id="howItWorksVideo" controls playsinline>
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
-      <!-- CTA row (hidden until video ends) -->
+      <!-- CTA row: shows when the video ends -->
       <div id="videoCTA" class="video-cta" style="display:none">
         <a class="icon-btn" href="mailto:Daniel@passivestaysolutions.com" aria-label="Email Passive Stay Solutions">
-          <img src="Email.png" alt="Email">
+          <img src="Email.png" alt="Email icon">
         </a>
         <a class="icon-btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
-          <img src="Facebook.png" alt="Facebook">
+          <img src="Facebook.png" alt="Facebook icon">
         </a>
         <a class="icon-btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (Twitter)">
-          <img src="X.png" alt="X (Twitter)">
+          <img src="X.png" alt="X (Twitter) icon">
         </a>
       </div>
     </div>
@@ -135,8 +191,7 @@
     const cta = document.getElementById('videoCTA');
 
     function openVideo(){
-      // reset CTA visibility each time
-      if (cta) cta.style.display = 'none';
+      if (cta) cta.style.display = 'none'; // reset CTA visibility
       if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
       if (vid) { vid.currentTime = 0; vid.play().catch(()=>{}); }
     }
