@@ -127,9 +127,6 @@
       display:block;
     }
 
-    /* Keep spacing consistent with cards */
-    .video-card h2 { margin-bottom:.5rem; }
-
     /* Modal (lightbox) */
     .video-modal {
       display:none;
@@ -159,19 +156,10 @@
       width:36px; height:36px;
       border-radius:9999px;
       background:rgba(255,255,255,.15);
-      color:#fff; font-size:22px; line-height:1;
+      color:#fff; font-size:18px; font-weight:800; line-height:1;
       cursor:pointer;
     }
     .video-close:hover { background:rgba(255,255,255,.25); }
-
-    /* Video inside a card if we ever embed it again */
-    .video-card video{
-      width:100%;
-      height:auto;
-      border-radius:8px;
-      display:block;
-      margin-top:.75rem;
-    }
   </style>
 
   <!-- (Optional) Google Analytics -->
@@ -224,10 +212,8 @@
 
     <!-- 🎥 Video Section -->
     <div class="card video-card">
-      <h2>How It Works</h2>
-
-      <!-- Thumbnail button (uses Howitworks.png) -->
-      <button class="video-thumb" aria-label="Play How It Works video" onclick="openVideo()" title="Play video">
+      <!-- Header removed as requested -->
+      <button class="video-thumb" aria-label="Play video" onclick="openVideo()" title="Play video">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
       </button>
     </div>
@@ -322,9 +308,9 @@
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 
   <!-- Video Modal -->
-  <dialog id="videoModal" class="video-modal" aria-label="How It Works video dialog">
+  <dialog id="videoModal" class="video-modal" aria-label="Video dialog">
     <div class="video-content">
-      <button class="video-close" aria-label="Close video" onclick="closeVideo()">✕</button>
+      <button class="video-close" aria-label="Close video" onclick="closeVideo()">X</button>
       <video id="howItWorksVideo" controls playsinline>
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
