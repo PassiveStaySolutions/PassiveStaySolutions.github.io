@@ -9,7 +9,13 @@
   <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
+
+  <!-- Performance -->
   <link rel="preload" as="image" href="Livingroom.jpeg"/>
+  <link rel="preload" as="image" href="Howitworks.png"/>
+
+  <!-- Optional: reference your sitemap (create /sitemap.xml and /robots.txt in your repo root) -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
@@ -38,10 +44,21 @@
 
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
+    /* Visually-hidden (for accessible labels/titles) */
+    .sr-only{
+      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
     }
+    /* Mobile perf: avoid fixed attachment on smaller screens */
+    @media (max-width: 768px){
+      body{ background-attachment: scroll; }
+    }
+
     .container{ width:min(1100px,92%); margin:0 auto; }
 
     header{ position:sticky; top:0; z-index:1000; backdrop-filter:blur(8px); background:rgba(3,7,18,.6); border-bottom:1px solid rgba(255,255,255,.06); }
@@ -52,7 +69,10 @@
     .card{ position:relative; background:rgba(17,24,39,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1.2rem; margin:1rem 0; overflow:hidden; }
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
-    h1,h2{ color:var(--heading); margin:0 0 .6rem; }
+
+    /* Typography tweaks */
+    h1{ color:var(--heading); margin:0 0 .6rem; font-size:clamp(1.6rem, 3.5vw + 1rem, 2.4rem); line-height:1.15; }
+    h2{ color:var(--heading); margin:0 0 .6rem; }
     a{ color:var(--accent); text-decoration:none; }
 
     .trust-badge{
@@ -80,10 +100,8 @@
       background:rgba(255,255,255,.05);
       transition:transform .12s ease, background .12s ease;
     }
-    .icon-btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
+    .icon-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08); }
+    .icon-btn:active{ transform:translateY(0); } /* better tap feel */
     .icon-btn img{
       width:36px; height:36px;
       display:block;
@@ -107,6 +125,7 @@
     .video-card::before { content:none; }
     .video-card { text-align:center; }
 
+    /* Thumbnail-as-button (whole image is clickable) */
     .video-thumb {
       display:inline-block;
       border:none;
@@ -143,6 +162,7 @@
       transition:background .15s ease; z-index:10;
     }
     .video-close:hover { background:rgba(0,0,0,.75); }
+    .video-close:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
     .video-close svg { display:block; }
 
     /* Text CTA buttons that appear after video ends */
@@ -156,6 +176,7 @@
       transition:filter .15s ease, transform .12s ease; text-decoration:none;
     }
     .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
+    .btn:active{ transform:translateY(0); }
   </style>
 
   <!-- Structured Data -->
@@ -199,7 +220,7 @@
 
     <!-- 🎥 Video Section (no H2 header, full-image trigger) -->
     <div class="card video-card">
-      <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video">
+      <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video" id="videoThumb">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
       </button>
     </div>
@@ -297,8 +318,9 @@
   </footer>
 
   <!-- Video Modal -->
-  <div id="videoOverlay" class="video-modal" role="dialog" aria-modal="true" aria-label="How It Works video dialog">
+  <div id="videoOverlay" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="howItWorksTitle">
     <div class="video-content">
+      <h2 id="howItWorksTitle" class="sr-only">How It Works — Video</h2>
       <button class="video-close" onclick="event.stopPropagation(); closeVideo()" aria-label="Close video">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -312,7 +334,7 @@
       </video>
 
       <!-- CTA text buttons (appear after video ends) -->
-      <div id="videoCTA" class="video-cta">
+      <div id="videoCTA" class="video-cta" aria-live="polite">
         <a class="btn" href="mailto:Daniel@passivestaysolutions.com">Email Us</a>
         <a class="btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer">Facebook</a>
         <a class="btn" href="https://x.com/Passive_Stays?t=Qa85PPW5FmthT2x0h-ZceQ&s=09" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
@@ -409,12 +431,15 @@
       card.addEventListener('mousedown', onStart);
     })();
 
-    // ----- Video modal & CTA reveal -----
+    // ----- Video modal, Desktop/Mobile autoplay, CTA reveal, A11y focus trap -----
     const overlay = document.getElementById('videoOverlay');
     const content = overlay.querySelector('.video-content');
     const closeBtn = overlay.querySelector('.video-close');
     const vid = document.getElementById('howItWorksVideo');
     const cta = document.getElementById('videoCTA');
+    const thumbBtn = document.getElementById('videoThumb');
+
+    let lastFocused = null;
 
     function lockScroll(lock) { document.body.style.overflow = lock ? 'hidden' : ''; }
 
@@ -422,6 +447,10 @@
       if (cta) cta.style.display = 'none';
       overlay.classList.add('is-open');
       lockScroll(true);
+
+      // focus management
+      lastFocused = document.activeElement;
+      closeBtn.focus();
 
       if (vid) {
         vid.currentTime = 0;
@@ -446,17 +475,48 @@
       if (vid) vid.pause();
       overlay.classList.remove('is-open');
       lockScroll(false);
+      // restore focus to the thumbnail trigger
+      if (thumbBtn) thumbBtn.focus();
     };
 
+    // Reveal CTAs when video ends
     if (vid) {
       vid.addEventListener('ended', () => { if (cta) cta.style.display = 'flex'; });
     }
 
+    // Close on backdrop click
     overlay.addEventListener('click', (e) => { if (!content.contains(e.target)) window.closeVideo(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeVideo(); });
-    closeBtn.addEventListener('click', (e) => { e.stopPropagation(); window.closeVideo(); });
 
-    // Footer year
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeVideo();
+    });
+
+    // Focus trap inside modal (TAB / Shift+TAB)
+    overlay.addEventListener('keydown', (e) => {
+      if (!overlay.classList.contains('is-open')) return;
+      if (e.key !== 'Tab') return;
+
+      const focusable = content.querySelectorAll(
+        'button, [href], input, select, textarea, video[controls], [tabindex]:not([tabindex="-1"])'
+      );
+      const list = Array.from(focusable).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+
+      if (list.length === 0) return;
+
+      const first = list[0];
+      const last  = list[list.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) { // Shift + Tab on first
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) { // Tab on last
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    // Footer year (ensure after everything)
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
@@ -484,5 +544,11 @@
     ]
   }
   </script>
+
+  <!--
+    TODO:
+    - Add /robots.txt (e.g., "User-agent: *\nAllow: / \nSitemap: https://www.passivestaysolutions.com/sitemap.xml")
+    - Add /sitemap.xml with URLs for index and key assets.
+  -->
 </body>
 </html>
