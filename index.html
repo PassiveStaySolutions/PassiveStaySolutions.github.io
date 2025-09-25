@@ -107,7 +107,6 @@
     .video-card::before { content:none; }
     .video-card { text-align:center; }
 
-    /* Thumbnail-as-button (whole image is clickable) */
     .video-thumb {
       display:inline-block;
       border:none;
@@ -138,35 +137,23 @@
 
     /* Close button (SVG X) */
     .video-close{
-      position:absolute;
-      top:8px; right:8px;
-      width:32px; height:32px;
-      border:none; border-radius:50%;
-      background:rgba(0,0,0,.55);
-      cursor:pointer;
-      display:grid; place-items:center;
-      transition:background .15s ease;
-      z-index:10;
+      position:absolute; top:8px; right:8px; width:32px; height:32px;
+      border:none; border-radius:50%; background:rgba(0,0,0,.55);
+      cursor:pointer; display:grid; place-items:center;
+      transition:background .15s ease; z-index:10;
     }
     .video-close:hover { background:rgba(0,0,0,.75); }
     .video-close svg { display:block; }
 
     /* Text CTA buttons that appear after video ends */
     .video-cta{
-      display:none;
-      gap:.6rem; justify-content:center; align-items:center; flex-wrap:wrap;
+      display:none; gap:.6rem; justify-content:center; align-items:center; flex-wrap:wrap;
       margin-top:.9rem;
     }
     .btn{
-      display:inline-block;
-      padding:.55rem .95rem;
-      border-radius:9999px;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.1);
-      background:var(--accent);
-      color:#0b1222;
-      transition:filter .15s ease, transform .12s ease;
-      text-decoration:none;
+      display:inline-block; padding:.55rem .95rem; border-radius:9999px; font-weight:700;
+      border:1px solid rgba(255,255,255,.1); background:var(--accent); color:#0b1222;
+      transition:filter .15s ease, transform .12s ease; text-decoration:none;
     }
     .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
   </style>
@@ -210,7 +197,7 @@
 
   <main class="container">
 
-    <!-- 🎥 Video Section (no H2 header) -->
+    <!-- 🎥 Video Section (no H2 header, full-image trigger) -->
     <div class="card video-card">
       <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
@@ -318,7 +305,8 @@
           <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
-      <video id="howItWorksVideo" controls playsinline>
+      <!-- Keep muted+autoplay for mobile; JS will unmute on desktop -->
+      <video id="howItWorksVideo" controls playsinline muted autoplay>
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -336,7 +324,7 @@
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Testimonials Rotator (same as before)
+    // Testimonials Rotator (unchanged)
     (function(){
       const items = [
         { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
@@ -434,7 +422,24 @@
       if (cta) cta.style.display = 'none';
       overlay.classList.add('is-open');
       lockScroll(true);
-      if (vid) { vid.currentTime = 0; /* no autoplay on open */ }
+
+      if (vid) {
+        vid.currentTime = 0;
+
+        // Desktop vs mobile: play with sound on desktop; muted on mobile
+        const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+        vid.muted = isMobile ? true : false;
+
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => {
+            // If autoplay with sound fails (e.g., desktop policy), fall back to muted
+            vid.muted = true;
+            vid.play().catch(()=>{});
+            console.log("Autoplay with sound blocked, falling back to muted.", err);
+          });
+        }
+      }
     };
 
     window.closeVideo = function(){
