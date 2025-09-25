@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
   <url>
     <loc>https://www.passivestaysolutions.com/</loc>
-    <priority>1.0</priority>
+    <lastmod>2025-09-24</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- Key images referenced on the homepage -->
+    <image:image>
+      <image:loc>https://www.passivestaysolutions.com/social-banner.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.passivestaysolutions.com/Livingroom.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.passivestaysolutions.com/PS-logo.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.passivestaysolutions.com/Howitworks.png</image:loc>
+    </image:image>
   </url>
+
+  <!-- One-pager PDF (including non-HTML assets is OK and helpful) -->
   <url>
     <loc>https://www.passivestaysolutions.com/PassiveStaySolutions_OnePager.pdf</loc>
-    <priority>0.5</priority>
+    <lastmod>2025-09-24</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+
+  <!-- Video file (optional to list; helps discovery) -->
   <url>
-    <loc>https://www.passivestaysolutions.com/social-banner.png</loc>
-    <priority>0.3</priority>
+    <loc>https://www.passivestaysolutions.com/PSSVideo.mp4</loc>
+    <lastmod>2025-09-24</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+
 </urlset>
