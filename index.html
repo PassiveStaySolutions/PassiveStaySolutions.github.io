@@ -53,18 +53,26 @@
 
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
-      /* Fallback JPEG */
-      background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
+      /* Fallback JPEG with elevated focal point */
+      background:#0f172a url('Livingroom.jpeg') center 35% / cover fixed no-repeat;
     }
-    /* Prefer modern WebP where supported */
+    /* Prefer modern WebP where supported (same focal point) */
     @supports (background-image: url("image.webp")){
       body{
-        background:#0f172a url('Livingroom_optimized.webp') center/cover fixed no-repeat;
+        background:#0f172a url('Livingroom_optimized.webp') center 35% / cover fixed no-repeat;
       }
     }
-    /* Mobile perf: avoid fixed attachment on smaller screens */
+    /* Mobile: avoid fixed jank + nudge focal point higher on smaller screens */
     @media (max-width: 768px){
-      body{ background-attachment: scroll; }
+      body{
+        background-attachment: scroll;
+        background-position: center 22%;
+      }
+    }
+    @media (max-width: 420px){
+      body{
+        background-position: center 15%;
+      }
     }
 
     .container{ width:min(1100px,92%); margin:0 auto; }
