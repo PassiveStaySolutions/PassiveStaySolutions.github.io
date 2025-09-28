@@ -11,9 +11,8 @@
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <!-- Performance -->
-  <!-- Preload the fixed desktop background and the mobile background -->
   <link rel="preload" as="image" href="livingroom-1440.jpg">
-  <link rel="preload" as="image" href="livingroom-mobile.jpeg" media="(max-width: 768px)">
+  <link rel="preload" as="image" href="livingroom-mobile.jpeg" media="(max-width: 1024px)">
   <link rel="preload" as="image" href="Howitworks.png"/>
 
   <!-- Optional: reference your sitemap -->
@@ -54,32 +53,32 @@
       margin:0;
       font-family:system-ui,sans-serif;
       color:var(--text);
-      background-color:#0f172a; /* solid base behind the fixed bg */
+      background-color:#0f172a;
     }
-    /* fixed layer that holds the background image to avoid scroll "jitter" */
+    /* Fixed layer holding the background */
     .site-bg{
       position:fixed;
       inset:0;
       z-index:-1;
-      /* DESKTOP: always use the same large image and fill the viewport */
+      /* DESKTOP: lock to a single image; never swap */
       background:#0f172a url('livingroom-1440.jpg') center center / cover no-repeat;
       will-change:transform;
-      transform:translateZ(0); /* promote to its own layer */
+      transform:translateZ(0);
     }
 
-    /* --- Mobile background: full room in view, no cropping --- */
-    @media (max-width: 768px){
+    /* --- MOBILE (portrait & landscape): always use the mobile JPEG --- */
+    /* target touch devices; also cover small windows on tablets/phones */
+    @media (pointer:coarse) and (max-width:1024px), (pointer:coarse) and (max-height:700px) {
       .site-bg{
-        background-image:url('livingroom-mobile.jpeg'); /* phones always use JPEG */
+        background-image:url('livingroom-mobile.jpeg');
         background-position:center top;
-        background-size:contain;      /* show entire image */
+        background-size:contain;      /* show entire room */
         background-repeat:no-repeat;
-        min-height:120vh;             /* ensures full image height is visible */
+        min-height:120vh;
       }
-      /* Reduce header blur on mobile to further prevent repaint artifacts */
       header{ backdrop-filter:none; background:rgba(3,7,18,.7); }
     }
-    @media (max-width: 420px){
+    @media (max-width:420px){
       .site-bg{ background-position:center 0%; }
     }
 
@@ -112,8 +111,7 @@
     }
     .card *{ position:relative; z-index:1; }
 
-    /* Even lighter on mobile for more background reveal */
-    @media (max-width:768px){
+    @media (pointer:coarse){
       .card{
         background:rgba(17,24,39,.78);
         border-color:rgba(255,255,255,.05);
@@ -181,7 +179,7 @@
 
   <main class="container">
 
-    <!-- 🎥 Video Section (no H2 header, full-image trigger) -->
+    <!-- 🎥 Video Section -->
     <div class="card video-card">
       <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video" id="videoThumb">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
