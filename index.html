@@ -60,24 +60,36 @@
       position:fixed;
       inset:0;
       z-index:-1;
-      /* DESKTOP: lock to a single image; never swap */
+      /* DESKTOP (and default): single image; never swap */
       background:#0f172a url('livingroom-1440.jpg') center center / cover no-repeat;
       will-change:transform;
       transform:translateZ(0);
     }
 
-    /* --- MOBILE (portrait & landscape): always use the mobile JPEG --- */
-    /* target touch devices; also cover small windows on tablets/phones */
-    @media (pointer:coarse) and (max-width:1024px), (pointer:coarse) and (max-height:700px) {
+    /* ---- MOBILE PORTRAIT: use mobile JPEG, show entire room ---- */
+    @media (pointer:coarse) and (orientation:portrait){
       .site-bg{
         background-image:url('livingroom-mobile.jpeg');
         background-position:center top;
-        background-size:contain;      /* show entire room */
+        background-size:contain;
         background-repeat:no-repeat;
         min-height:120vh;
       }
       header{ backdrop-filter:none; background:rgba(3,7,18,.7); }
     }
+
+    /* ---- MOBILE LANDSCAPE: match desktop look (cover) ---- */
+    @media (pointer:coarse) and (orientation:landscape){
+      .site-bg{
+        background-image:url('livingroom-1440.jpg');
+        background-position:center center;
+        background-size:cover;
+        background-repeat:no-repeat;
+        min-height:100vh;
+      }
+      header{ backdrop-filter:blur(8px); background:rgba(3,7,18,.6); }
+    }
+
     @media (max-width:420px){
       .site-bg{ background-position:center 0%; }
     }
@@ -375,7 +387,6 @@
       function onEnd(e){
         card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
         card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.removeEventListener('mouseleave', onEnd);
         if(moved){
           const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
           const endX = p ? p.clientX : startX;
@@ -427,7 +438,6 @@
       if (!overlay.classList.contains('is-open') || e.key !== 'Tab') return;
       const focusable = content.querySelectorAll('button, [href], input, select, textarea, video[controls], [tabindex]:not([tabindex="-1"])');
       const list = Array.from(focusable).filter(el => !el.disabled && el.offsetParent !== null);
-      if (!list.length) return;
       const first = list[0], last = list[list.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
