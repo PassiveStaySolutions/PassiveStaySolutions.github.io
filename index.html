@@ -11,12 +11,8 @@
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <!-- Performance -->
-  <!-- Desktop/tablet responsive background hints -->
-  <link rel="preload" as="image"
-        href="livingroom-480.webp"
-        imagesrcset="livingroom-480.webp 480w, livingroom-768.jpeg 768w, livingroom-1080.jpg 1080w, livingroom-1440.jpg 1440w"
-        imagesizes="100vw">
-  <!-- Mobile-first: preload JPEG (all mobiles use this) -->
+  <!-- Preload the fixed desktop background and the mobile background -->
+  <link rel="preload" as="image" href="livingroom-1440.jpg">
   <link rel="preload" as="image" href="livingroom-mobile.jpeg" media="(max-width: 768px)">
   <link rel="preload" as="image" href="Howitworks.png"/>
 
@@ -65,19 +61,11 @@
       position:fixed;
       inset:0;
       z-index:-1;
-      background:#0f172a url('livingroom-1080.jpg') center 35% / cover no-repeat;
+      /* DESKTOP: always use the same large image and fill the viewport */
+      background:#0f172a url('livingroom-1440.jpg') center center / cover no-repeat;
       will-change:transform;
       transform:translateZ(0); /* promote to its own layer */
     }
-    /* Prefer WebP on larger screens when supported */
-    @supports (background-image: url("image.webp")) {
-      .site-bg{ background-image:url('livingroom-480.webp'); background-position:center 35%; background-size:cover; }
-      @media (min-width: 769px)  { .site-bg{ background-image:url('livingroom-1080.jpg'); } }
-      @media (min-width: 1081px) { .site-bg{ background-image:url('livingroom-1440.jpg'); } }
-    }
-    /* Non-WebP breakpoints for desktop/tablet (kept for completeness) */
-    @media (min-width: 769px) and (max-width:1080px){ .site-bg{ background-image:url('livingroom-1080.jpg'); } }
-    @media (min-width:1081px){ .site-bg{ background-image:url('livingroom-1440.jpg'); } }
 
     /* --- Mobile background: full room in view, no cropping --- */
     @media (max-width: 768px){
@@ -105,20 +93,20 @@
     /* -------- Lightened cards -------- */
     .card{
       position:relative;
-      background:rgba(17,24,39,.82);  /* was .92 */
-      border:1px solid rgba(255,255,255,.06); /* was .08 */
+      background:rgba(17,24,39,.82);
+      border:1px solid rgba(255,255,255,.06);
       border-radius:14px;
       padding:1.2rem;
       margin:1rem 0;
       overflow:hidden;
-      box-shadow:0 10px 20px rgba(0,0,0,.25); /* subtle lift */
+      box-shadow:0 10px 20px rgba(0,0,0,.25);
     }
     .card::before{
       content:"";
       position:absolute;
       inset:0;
       background:url('PS-logo.png') center/300px no-repeat;
-      opacity:.16;  /* was .22 */
+      opacity:.16;
       z-index:0;
       pointer-events:none;
     }
