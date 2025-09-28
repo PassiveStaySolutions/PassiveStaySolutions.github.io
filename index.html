@@ -11,13 +11,14 @@
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <!-- Performance -->
-  <!-- Preload the background with responsive hints (tablet/desktop) -->
+  <!-- Responsive background for tablet/desktop -->
   <link rel="preload" as="image"
         href="livingroom-480.webp"
         imagesrcset="livingroom-480.webp 480w, livingroom-768.jpg 768w, livingroom-1080.jpg 1080w, livingroom-1440.jpg 1440w"
         imagesizes="100vw">
-  <!-- Mobile-first preload so phones grab the right image -->
-  <link rel="preload" as="image" href="Livingroom-mobile.jpeg" media="(max-width: 768px)">
+  <!-- Mobile portrait crop (use WebP when possible) -->
+  <link rel="preload" as="image" href="livingroom-mobile.webp" media="(max-width: 768px)">
+  <link rel="preload" as="image" href="livingroom-mobile.jpeg" media="(max-width: 768px)">
   <link rel="preload" as="image" href="Howitworks.png"/>
 
   <!-- Optional: reference your sitemap -->
@@ -56,6 +57,7 @@
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background-color:#0f172a;
+
       /* Desktop/tablet sensible fallback */
       background-image:url('livingroom-1080.jpg');
       background-position:center 35%;
@@ -63,25 +65,29 @@
       background-repeat:no-repeat;
       background-attachment:fixed;
     }
-    /* Prefer WebP where supported (tablet/desktop) */
-    @supports (background-image: url("image.webp")) {
-      body { background-image:url('livingroom-480.webp'); }
-      @media (min-width: 769px)  { body { background-image:url('livingroom-1080.jpg'); } }
-      @media (min-width: 1081px) { body { background-image:url('livingroom-1440.jpg'); } }
-    }
-    /* JPEG size fallbacks for non-WebP desktop/tablet */
+
+    /* Desktop/tablet size steps (non-WebP) */
     @media (min-width: 769px) and (max-width:1080px){ body { background-image:url('livingroom-1080.jpg'); } }
     @media (min-width:1081px){ body { background-image:url('livingroom-1440.jpg'); } }
 
-    /* *** Dedicated mobile image (always overrides on phones) *** */
+    /* *** Dedicated mobile portrait image *** */
     @media (max-width: 768px){
       body{
-        background-image:url('Livingroom-mobile.jpeg');
-        background-attachment:scroll;   /* smoother scrolling on mobile */
-        background-position:center 22%; /* lift focal point on tall screens */
+        background-image:url('livingroom-mobile.jpeg'); /* fallback */
+        background-attachment:scroll;   /* smoother on mobile */
+        background-position:center 22%; /* lift focal point */
       }
     }
-    @media (max-width: 420px){ body{ background-position:center 15%; } }
+    @media (max-width: 420px){
+      body{ background-position:center 15%; }
+    }
+
+    /* Prefer WebP on mobile when supported */
+    @supports (background-image: url("image.webp")){
+      @media (max-width: 768px){
+        body{ background-image:url('livingroom-mobile.webp'); }
+      }
+    }
 
     .container{ width:min(1100px,92%); margin:0 auto; }
 
