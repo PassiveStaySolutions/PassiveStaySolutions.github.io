@@ -11,8 +11,11 @@
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <!-- Performance -->
-  <link rel="preload" as="image" href="Livingroom.jpeg"/>
-  <link rel="preload" as="image" href="Livingroom_optimized.webp"/>
+  <!-- Preload the background with responsive hints -->
+  <link rel="preload" as="image"
+        href="livingroom-480.webp"
+        imagesrcset="livingroom-480.webp 480w, livingroom-768.jpg 768w, livingroom-1080.jpg 1080w, livingroom-1440.jpg 1440w"
+        imagesizes="100vw">
   <link rel="preload" as="image" href="Howitworks.png"/>
 
   <!-- Optional: reference your sitemap (create /sitemap.xml and /robots.txt in your repo root) -->
@@ -51,27 +54,50 @@
       overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
 
-    body{
+    /* ---- Responsive, focal-pointed background image ---- */
+    body {
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
-      /* Fallback JPEG with elevated focal point */
-      background:#0f172a url('Livingroom.jpeg') center 35% / cover fixed no-repeat;
+      background-color:#0f172a;
+      /* Sensible fallback */
+      background-image:url('livingroom-1080.jpg');
+      background-position:center 35%;
+      background-size:cover;
+      background-attachment:fixed;
+      background-repeat:no-repeat;
     }
-    /* Prefer modern WebP where supported (same focal point) */
-    @supports (background-image: url("image.webp")){
-      body{
-        background:#0f172a url('Livingroom_optimized.webp') center 35% / cover fixed no-repeat;
+    /* Prefer WebP when supported (mobile first) */
+    @supports (background-image: url("image.webp")) {
+      body { background-image:url('livingroom-480.webp'); }
+      @media (min-width: 769px) {
+        body { background-image:url('livingroom-1080.jpg'); }
+      }
+      @media (min-width: 1081px) {
+        body { background-image:url('livingroom-1440.jpg'); }
       }
     }
-    /* Mobile: avoid fixed jank + nudge focal point higher on smaller screens */
+    /* JPEG fallbacks for browsers without WebP support */
+    @media (max-width: 480px) {
+      body { background-image:url('livingroom-480.webp'); }
+    }
+    @media (min-width: 481px) and (max-width: 768px) {
+      body { background-image:url('livingroom-768.jpg'); }
+    }
+    @media (min-width: 769px) and (max-width: 1080px) {
+      body { background-image:url('livingroom-1080.jpg'); }
+    }
+    @media (min-width: 1081px) {
+      body { background-image:url('livingroom-1440.jpg'); }
+    }
+    /* Mobile perf + composition: drop fixed + nudge focal point */
     @media (max-width: 768px){
       body{
-        background-attachment: scroll;
-        background-position: center 22%;
+        background-attachment:scroll;
+        background-position:center 22%;
       }
     }
     @media (max-width: 420px){
       body{
-        background-position: center 15%;
+        background-position:center 15%;
       }
     }
 
