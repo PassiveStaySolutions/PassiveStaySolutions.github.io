@@ -76,21 +76,18 @@
     @media (min-width: 769px) and (max-width:1080px){ body { background-image:url('livingroom-1080.jpg'); } }
     @media (min-width:1081px){ body { background-image:url('livingroom-1440.jpg'); } }
 
-    /* *** Dedicated mobile image (always JPEG) — show full room *** */
+    /* *** Dedicated mobile image (fill height, keep focal point high) *** */
     @media (max-width: 768px){
       body{
         background-image:url('livingroom-mobile.jpeg');
         background-attachment:scroll;   /* smoother scrolling on mobile */
-        background-position:center top; /* anchor to the top of the scene */
-        background-size:contain;        /* show entire photo, no cropping */
-        background-repeat:no-repeat;    /* avoid tiling below the fold */
-        min-height:100vh;               /* ensures full image height is visible */
+        background-position:center 18%; /* show more of the room */
+        background-size:cover;          /* fill full viewport height */
+        background-repeat:no-repeat;
+        min-height:100dvh;              /* cover dynamic mobile viewport */
       }
     }
-
-    @media (max-width: 420px){
-      body{ background-position:center 0%; }
-    }
+    @media (max-width: 420px){ body{ background-position:center 12%; } }
 
     .container{ width:min(1100px,92%); margin:0 auto; }
 
