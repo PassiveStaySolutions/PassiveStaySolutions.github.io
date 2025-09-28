@@ -11,14 +11,16 @@
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
   <!-- Performance -->
-  <!-- Preload the background with responsive hints -->
+  <!-- Preload the background with responsive hints (tablet/desktop) -->
   <link rel="preload" as="image"
         href="livingroom-480.webp"
         imagesrcset="livingroom-480.webp 480w, livingroom-768.jpg 768w, livingroom-1080.jpg 1080w, livingroom-1440.jpg 1440w"
         imagesizes="100vw">
+  <!-- Mobile-first preload so phones grab the right image -->
+  <link rel="preload" as="image" href="Livingroom-mobile.jpeg" media="(max-width: 768px)">
   <link rel="preload" as="image" href="Howitworks.png"/>
 
-  <!-- Optional: reference your sitemap (create /sitemap.xml and /robots.txt in your repo root) -->
+  <!-- Optional: reference your sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
   <!-- Open Graph / Facebook / LinkedIn -->
@@ -48,58 +50,38 @@
 
   <style>
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
-    /* Visually-hidden (for accessible labels/titles) */
-    .sr-only{
-      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
+    .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-    /* ---- Responsive, focal-pointed background image ---- */
-    body {
+    /* ---------- Responsive, focal-pointed background image ---------- */
+    body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
       background-color:#0f172a;
-      /* Sensible fallback */
+      /* Desktop/tablet sensible fallback */
       background-image:url('livingroom-1080.jpg');
       background-position:center 35%;
       background-size:cover;
-      background-attachment:fixed;
       background-repeat:no-repeat;
+      background-attachment:fixed;
     }
-    /* Prefer WebP when supported (mobile first) */
+    /* Prefer WebP where supported (tablet/desktop) */
     @supports (background-image: url("image.webp")) {
       body { background-image:url('livingroom-480.webp'); }
-      @media (min-width: 769px) {
-        body { background-image:url('livingroom-1080.jpg'); }
-      }
-      @media (min-width: 1081px) {
-        body { background-image:url('livingroom-1440.jpg'); }
-      }
+      @media (min-width: 769px)  { body { background-image:url('livingroom-1080.jpg'); } }
+      @media (min-width: 1081px) { body { background-image:url('livingroom-1440.jpg'); } }
     }
-    /* JPEG fallbacks for browsers without WebP support */
-    @media (max-width: 480px) {
-      body { background-image:url('livingroom-480.webp'); }
-    }
-    @media (min-width: 481px) and (max-width: 768px) {
-      body { background-image:url('livingroom-768.jpg'); }
-    }
-    @media (min-width: 769px) and (max-width: 1080px) {
-      body { background-image:url('livingroom-1080.jpg'); }
-    }
-    @media (min-width: 1081px) {
-      body { background-image:url('livingroom-1440.jpg'); }
-    }
-    /* Mobile perf + composition: drop fixed + nudge focal point */
+    /* JPEG size fallbacks for non-WebP desktop/tablet */
+    @media (min-width: 769px) and (max-width:1080px){ body { background-image:url('livingroom-1080.jpg'); } }
+    @media (min-width:1081px){ body { background-image:url('livingroom-1440.jpg'); } }
+
+    /* *** Dedicated mobile image (always overrides on phones) *** */
     @media (max-width: 768px){
       body{
-        background-attachment:scroll;
-        background-position:center 22%;
+        background-image:url('Livingroom-mobile.jpeg');
+        background-attachment:scroll;   /* smoother scrolling on mobile */
+        background-position:center 22%; /* lift focal point on tall screens */
       }
     }
-    @media (max-width: 420px){
-      body{
-        background-position:center 15%;
-      }
-    }
+    @media (max-width: 420px){ body{ background-position:center 15%; } }
 
     .container{ width:min(1100px,92%); margin:0 auto; }
 
@@ -112,140 +94,49 @@
     .card::before{ content:""; position:absolute; inset:0; background:url('PS-logo.png') center/300px no-repeat; opacity:.22; z-index:0; pointer-events:none; }
     .card *{ position:relative; z-index:1; }
 
-    /* Typography tweaks */
     h1{ color:var(--heading); margin:0 0 .6rem; font-size:clamp(1.6rem, 3.5vw + 1rem, 2.4rem); line-height:1.15; }
     h2{ color:var(--heading); margin:0 0 .6rem; }
     a{ color:var(--accent); text-decoration:none; }
 
-    .trust-badge{
-      display:inline-block; background:#facc15; color:#111827; font-weight:700;
-      border-radius:8px; padding:.35rem .6rem; margin-top:.75rem;
-    }
+    .trust-badge{ display:inline-block; background:#facc15; color:#111827; font-weight:700; border-radius:8px; padding:.35rem .6rem; margin-top:.75rem; }
 
     details.faq{ background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.8rem 1rem; margin:.6rem 0; }
-    summary.faq-q{
-      cursor:pointer; list-style:none; font-weight:700;
-      padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18);
-    }
+    summary.faq-q{ cursor:pointer; list-style:none; font-weight:700; padding-bottom:.4rem; border-bottom:1px solid rgba(255,255,255,.18); }
     summary.faq-q::-webkit-details-marker{ display:none; }
     details.faq > div{ margin-top:.65rem; }
 
     footer{ padding:2rem 0; color:var(--muted); text-align:center; font-size:.9rem; background:rgba(3,7,18,.75); }
     .footer-row{ display:flex; gap:.75rem; justify-content:center; align-items:center; margin-bottom:.8rem; }
 
-    /* CTA buttons (no black rim) */
-    .icon-btn{
-      width:48px; height:48px;
-      display:inline-grid; place-items:center;
-      border-radius:9999px;
-      overflow:hidden;
-      background:rgba(255,255,255,.05);
-      transition:transform .12s ease, background .12s ease;
-    }
+    .icon-btn{ width:48px; height:48px; display:inline-grid; place-items:center; border-radius:9999px; overflow:hidden; background:rgba(255,255,255,.05); transition:transform .12s ease, background .12s ease; }
     .icon-btn:hover{ transform:translateY(-1px); background:rgba(255,255,255,.08); }
-    .icon-btn:active{ transform:translateY(0); } /* better tap feel */
-    .icon-btn img{
-      width:36px; height:36px;
-      display:block;
-      object-fit:contain;
-    }
+    .icon-btn:active{ transform:translateY(0); }
+    .icon-btn img{ width:36px; height:36px; display:block; object-fit:contain; }
 
-    /* Testimonials (fade + swipe) */
-    #testimonials blockquote{ margin:0; font-size:1.05rem; line-height:1.6; }
-    #testimonials figcaption{ color:var(--muted); font-size:.95rem; margin-top:.6rem; }
-    #testimonials .fade-wrap{ position:relative; min-height:100px; }
-    #testimonials .fade-el{ opacity:1; transition:opacity .45s ease; }
-    #testimonials .is-fading{ opacity:0; }
-    #testimonials .t-dots{ display:flex; gap:.4rem; margin-top:1rem; align-items:center; }
-    #testimonials .t-dot{
-      width:8px; height:8px; border-radius:9999px; border:none; cursor:pointer;
-      background:rgba(255,255,255,.25); transition:opacity .2s ease, transform .2s ease;
-    }
-    #testimonials .t-dot[aria-current="true"]{ background:#fbbf24; transform:scale(1.1); }
-
-    /* --- Video card & modal --- */
+    /* Video */
     .video-card::before { content:none; }
     .video-card { text-align:center; }
+    .video-thumb{ display:inline-block; border:none; background:none; padding:0; cursor:pointer; width:100%; max-width:400px; }
+    .video-thumb img{ width:100%; height:auto; border-radius:8px; display:block; }
 
-    /* Thumbnail-as-button (whole image is clickable) */
-    .video-thumb {
-      display:inline-block;
-      border:none;
-      background:none;
-      padding:0;
-      cursor:pointer;
-      width:100%;
-      max-width:400px;
-    }
-    .video-thumb img {
-      width:100%;
-      height:auto;
-      border-radius:8px;
-      display:block;
-    }
+    .video-modal{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:2000; place-items:center; padding:1rem; }
+    .video-modal.is-open{ display:grid; }
+    .video-content{ position:relative; width:min(900px, 96vw); }
+    .video-content video{ width:100%; height:auto; border-radius:10px; display:block; background:#000; position:relative; z-index:1; }
 
-    /* Modal (div-based, cross-browser) */
-    .video-modal {
-      display:none; position:fixed; inset:0; background:rgba(0,0,0,.8);
-      z-index:2000; place-items:center; padding:1rem;
-    }
-    .video-modal.is-open { display:grid; }
-    .video-content { position:relative; width:min(900px, 96vw); }
-    .video-content video {
-      width:100%; height:auto; border-radius:10px; display:block; background:#000;
-      position:relative; z-index:1;
-    }
-
-    /* Close button (SVG X) */
-    .video-close{
-      position:absolute; top:8px; right:8px; width:32px; height:32px;
-      border:none; border-radius:50%; background:rgba(0,0,0,.55);
-      cursor:pointer; display:grid; place-items:center;
-      transition:background .15s ease; z-index:10;
-    }
-    .video-close:hover { background:rgba(0,0,0,.75); }
+    .video-close{ position:absolute; top:8px; right:8px; width:32px; height:32px; border:none; border-radius:50%; background:rgba(0,0,0,.55); cursor:pointer; display:grid; place-items:center; transition:background .15s ease; z-index:10; }
+    .video-close:hover{ background:rgba(0,0,0,.75); }
     .video-close:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
-    .video-close svg { display:block; }
 
-    /* Text CTA buttons that appear after video ends */
-    .video-cta{
-      display:none; gap:.6rem; justify-content:center; align-items:center; flex-wrap:wrap;
-      margin-top:.9rem;
-    }
-    .btn{
-      display:inline-block; padding:.55rem .95rem; border-radius:9999px; font-weight:700;
-      border:1px solid rgba(255,255,255,.1); background:var(--accent); color:#0b1222;
-      transition:filter .15s ease, transform .12s ease; text-decoration:none;
-    }
+    .video-cta{ display:none; gap:.6rem; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:.9rem; }
+    .btn{ display:inline-block; padding:.55rem .95rem; border-radius:9999px; font-weight:700; border:1px solid rgba(255,255,255,.1); background:var(--accent); color:#0b1222; transition:filter .15s ease, transform .12s ease; text-decoration:none; }
     .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
   </style>
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Passive Stay Solutions LLC",
-    "url": "https://www.passivestaysolutions.com/",
-    "logo": "https://www.passivestaysolutions.com/PS-logo.png",
-    "image": "https://www.passivestaysolutions.com/PS-logo.png",
-    "sameAs": ["https://www.facebook.com/share/17BpY5cwNb/"]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Passive Stay Solutions LLC",
-    "url": "https://www.passivestaysolutions.com/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.passivestaysolutions.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Passive Stay Solutions LLC","url":"https://www.passivestaysolutions.com/","logo":"https://www.passivestaysolutions.com/PS-logo.png","image":"https://www.passivestaysolutions.com/PS-logo.png","sameAs":["https://www.facebook.com/share/17BpY5cwNb/"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Passive Stay Solutions LLC","url":"https://www.passivestaysolutions.com/","potentialAction":{"@type":"SearchAction","target":"https://www.passivestaysolutions.com/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 </head>
 <body>
   <header>
@@ -259,7 +150,6 @@
   </header>
 
   <main class="container">
-
     <!-- 🎥 Video Section (no H2 header, full-image trigger) -->
     <div class="card video-card">
       <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video" id="videoThumb">
@@ -369,13 +259,11 @@
           <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
-      <!-- Keep muted+autoplay for mobile; JS will unmute on desktop -->
       <video id="howItWorksVideo" controls playsinline muted autoplay>
         <source src="PSSVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
-      <!-- CTA text buttons (appear after video ends) -->
       <div id="videoCTA" class="video-cta" aria-live="polite">
         <a class="btn" href="mailto:Daniel@passivestaysolutions.com">Email Us</a>
         <a class="btn" href="https://www.facebook.com/share/17BpY5cwNb/" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -385,10 +273,8 @@
   </div>
 
   <script>
-    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Testimonials Rotator (unchanged)
     (function(){
       const items = [
         { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
@@ -473,7 +359,7 @@
       card.addEventListener('mousedown', onStart);
     })();
 
-    // ----- Video modal, Desktop/Mobile autoplay, CTA reveal, A11y focus trap -----
+    // Video modal + CTA reveal
     const overlay = document.getElementById('videoOverlay');
     const content = overlay.querySelector('.video-content');
     const closeBtn = overlay.querySelector('.video-close');
@@ -481,35 +367,20 @@
     const cta = document.getElementById('videoCTA');
     const thumbBtn = document.getElementById('videoThumb');
 
-    let lastFocused = null;
-
     function lockScroll(lock) { document.body.style.overflow = lock ? 'hidden' : ''; }
 
     window.openVideo = function(){
       if (cta) cta.style.display = 'none';
       overlay.classList.add('is-open');
       lockScroll(true);
-
-      // focus management
-      lastFocused = document.activeElement;
       closeBtn.focus();
 
       if (vid) {
         vid.currentTime = 0;
-
-        // Desktop vs mobile: play with sound on desktop; muted on mobile
         const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
         vid.muted = isMobile ? true : false;
-
         const playPromise = vid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(err => {
-            // If autoplay with sound fails (e.g., desktop policy), fall back to muted
-            vid.muted = true;
-            vid.play().catch(()=>{});
-            console.log("Autoplay with sound blocked, falling back to muted.", err);
-          });
-        }
+        if (playPromise) playPromise.catch(() => { vid.muted = true; vid.play().catch(()=>{}); });
       }
     };
 
@@ -517,48 +388,22 @@
       if (vid) vid.pause();
       overlay.classList.remove('is-open');
       lockScroll(false);
-      // restore focus to the thumbnail trigger
       if (thumbBtn) thumbBtn.focus();
     };
 
-    // Reveal CTAs when video ends
-    if (vid) {
-      vid.addEventListener('ended', () => { if (cta) cta.style.display = 'flex'; });
-    }
-
-    // Close on backdrop click
+    if (vid) vid.addEventListener('ended', () => { if (cta) cta.style.display = 'flex'; });
     overlay.addEventListener('click', (e) => { if (!content.contains(e.target)) window.closeVideo(); });
-
-    // Close with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeVideo();
-    });
-
-    // Focus trap inside modal (TAB / Shift+TAB)
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) window.closeVideo(); });
     overlay.addEventListener('keydown', (e) => {
-      if (!overlay.classList.contains('is-open')) return;
-      if (e.key !== 'Tab') return;
-
-      const focusable = content.querySelectorAll(
-        'button, [href], input, select, textarea, video[controls], [tabindex]:not([tabindex="-1"])'
-      );
-      const list = Array.from(focusable).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
-
-      if (list.length === 0) return;
-
-      const first = list[0];
-      const last  = list[list.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) { // Shift + Tab on first
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) { // Tab on last
-        e.preventDefault();
-        first.focus();
-      }
+      if (!overlay.classList.contains('is-open') || e.key !== 'Tab') return;
+      const focusable = content.querySelectorAll('button, [href], input, select, textarea, video[controls], [tabindex]:not([tabindex="-1"])');
+      const list = Array.from(focusable).filter(el => !el.disabled && el.offsetParent !== null);
+      if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
-    // Footer year (ensure after everything)
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
@@ -568,21 +413,9 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"Do I still get paid rent if the home is unoccupied?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}
-      },
-      {
-        "@type":"Question",
-        "name":"Who would be staying in my property?",
-        "acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I see if my property will qualify?",
-        "acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}
-      }
+      {"@type":"Question","name":"Do I still get paid rent if the home is unoccupied?","acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}},
+      {"@type":"Question","name":"Who would be staying in my property?","acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}},
+      {"@type":"Question","name":"How do I see if my property will qualify?","acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}}
     ]
   }
   </script>
