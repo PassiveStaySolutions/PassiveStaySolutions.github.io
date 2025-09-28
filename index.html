@@ -12,6 +12,7 @@
 
   <!-- Performance -->
   <link rel="preload" as="image" href="Livingroom.jpeg"/>
+  <link rel="preload" as="image" href="Livingroom_optimized.webp"/>
   <link rel="preload" as="image" href="Howitworks.png"/>
 
   <!-- Optional: reference your sitemap (create /sitemap.xml and /robots.txt in your repo root) -->
@@ -52,7 +53,14 @@
 
     body{
       margin:0; font-family:system-ui,sans-serif; color:var(--text);
+      /* Fallback JPEG */
       background:#0f172a url('Livingroom.jpeg') center/cover fixed no-repeat;
+    }
+    /* Prefer modern WebP where supported */
+    @supports (background-image: url("image.webp")){
+      body{
+        background:#0f172a url('Livingroom_optimized.webp') center/cover fixed no-repeat;
+      }
     }
     /* Mobile perf: avoid fixed attachment on smaller screens */
     @media (max-width: 768px){
@@ -544,11 +552,5 @@
     ]
   }
   </script>
-
-  <!--
-    TODO:
-    - Add /robots.txt (e.g., "User-agent: *\nAllow: / \nSitemap: https://www.passivestaysolutions.com/sitemap.xml")
-    - Add /sitemap.xml with URLs for index and key assets.
-  -->
 </body>
 </html>
