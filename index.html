@@ -47,7 +47,6 @@
     :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#94a3b8; --accent:#22d3ee; --heading:#fbbf24; }
     .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-    /* ---------- Jitter-free background layer (desktop & mobile) ---------- */
     html, body { height:100%; }
     body{
       margin:0;
@@ -55,18 +54,16 @@
       color:var(--text);
       background-color:#0f172a;
     }
-    /* Fixed layer holding the background */
+
     .site-bg{
       position:fixed;
       inset:0;
       z-index:-1;
-      /* DESKTOP (and default): single image; never swap */
       background:#0f172a url('livingroom-1440.jpg') center center / cover no-repeat;
       will-change:transform;
       transform:translateZ(0);
     }
 
-    /* ---- MOBILE PORTRAIT: use mobile JPEG, show entire room ---- */
     @media (pointer:coarse) and (orientation:portrait){
       .site-bg{
         background-image:url('livingroom-mobile.jpeg');
@@ -78,7 +75,6 @@
       header{ backdrop-filter:none; background:rgba(3,7,18,.7); }
     }
 
-    /* ---- MOBILE LANDSCAPE: match desktop look (cover) ---- */
     @media (pointer:coarse) and (orientation:landscape){
       .site-bg{
         background-image:url('livingroom-1440.jpg');
@@ -101,7 +97,6 @@
     .brand{ display:flex; align-items:center; gap:.6rem; font-weight:700; }
     .logo-img{ height:36px; width:auto; }
 
-    /* -------- Lightened cards -------- */
     .card{
       position:relative;
       background:rgba(17,24,39,.82);
@@ -112,6 +107,7 @@
       overflow:hidden;
       box-shadow:0 10px 20px rgba(0,0,0,.25);
     }
+
     .card::before{
       content:"";
       position:absolute;
@@ -121,6 +117,7 @@
       z-index:0;
       pointer-events:none;
     }
+
     .card *{ position:relative; z-index:1; }
 
     @media (pointer:coarse){
@@ -149,7 +146,6 @@
     .icon-btn:active{ transform:translateY(0); }
     .icon-btn img{ width:36px; height:36px; display:block; object-fit:contain; }
 
-    /* --- Video card & modal --- */
     .video-card::before { content:none; }
     .video-card { text-align:center; }
 
@@ -169,14 +165,121 @@
     .btn{ display:inline-block; padding:.55rem .95rem; border-radius:9999px; font-weight:700; border:1px solid rgba(255,255,255,.1); background:var(--accent); color:#0b1222; transition:filter .15s ease, transform .12s ease; text-decoration:none; }
     .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
+
+    .fade-wrap{
+      position:relative;
+      min-height:150px;
+    }
+
+    .fade-el{
+      margin:0;
+      transition:opacity .45s ease, transform .45s ease;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .fade-el.is-fading{
+      opacity:0;
+      transform:translateY(8px);
+    }
+
+    .fade-el blockquote{
+      margin:0 0 .85rem;
+      font-size:1.1rem;
+      line-height:1.7;
+    }
+
+    .fade-el figcaption{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .t-dots{
+      display:flex;
+      gap:.45rem;
+      margin-top:1rem;
+      flex-wrap:wrap;
+    }
+
+    .t-dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:none;
+      background:rgba(255,255,255,.25);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .t-dot[aria-selected="true"]{
+      background:var(--accent);
+    }
+
+    .section-note{
+      color:var(--muted);
+      margin-top:.25rem;
+      margin-bottom:1rem;
+    }
+
+    .review-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1rem;
+      margin-top:1rem;
+    }
+
+    .review-item{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:1rem;
+      height:100%;
+    }
+
+    .review-item blockquote{
+      margin:.8rem 0 0;
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    .review-meta{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.4;
+    }
+
+    .review-stars{
+      color:#facc15;
+      font-weight:700;
+      letter-spacing:.06em;
+      font-size:1rem;
+      margin-bottom:.45rem;
+    }
+
+    .review-name{
+      color:var(--text);
+      font-weight:700;
+      font-size:1.08rem;
+      margin:.1rem 0;
+    }
+
+    .review-location{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:.2rem;
+    }
+
+    .review-stay{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-bottom:.35rem;
+    }
   </style>
 
-  <!-- Structured Data -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Passive Stay Solutions LLC","url":"https://www.passivestaysolutions.com/","logo":"https://www.passivestaysolutions.com/PS-logo.png","image":"https://www.passivestaysolutions.com/PS-logo.png","sameAs":["https://www.facebook.com/share/17BpY5cwNb/"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Passive Stay Solutions LLC","url":"https://www.passivestaysolutions.com/","potentialAction":{"@type":"SearchAction","target":"https://www.passivestaysolutions.com/?q={search_term_string}","query-input":"required name=search_term_string"}}}</script>
 </head>
 <body>
-  <!-- Fixed background layer (prevents jitter) -->
   <div class="site-bg" aria-hidden="true"></div>
 
   <header>
@@ -191,14 +294,12 @@
 
   <main class="container">
 
-    <!-- 🎥 Video Section -->
     <div class="card video-card">
       <button class="video-thumb" onclick="openVideo()" aria-label="Play How It Works video" id="videoThumb">
         <img src="Howitworks.png" alt="How It Works video cover" width="1280" height="720" loading="eager">
       </button>
     </div>
 
-    <!-- Hero -->
     <div class="card">
       <h1>Corporate Housing Partnerships</h1>
       <p>Passive Stay Solutions LLC provides corporate housing for traveling nurses, doctors, patients receiving treatment at nearby hospitals, business professionals, and traveling military personnel. Guests typically stay from one week to several months, giving you consistent occupancy and reliable income.</p>
@@ -222,9 +323,9 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
-    <!-- Testimonials -->
     <div class="card" id="testimonials">
-      <h2>What People Say About Us</h2>
+      <h2>Landlord & Partner Reviews</h2>
+      <p class="section-note">Feedback from landlords, property managers, and business partners we work with.</p>
       <div class="fade-wrap" aria-live="polite">
         <figure class="fade-el">
           <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
@@ -240,25 +341,73 @@
       </div>
     </div>
 
-    <!-- Contact -->
-<div id="contact" class="card">
-  <h2>Contact</h2>
-  <p><strong>Email (Daniel):</strong> 
-     <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
-  <p><strong>Email (Jerrica):</strong> 
-     <a href="mailto:Jerrica@passivestaysolutions.com">Jerrica@passivestaysolutions.com</a></p>
-</div>
+    <div class="card" id="guest-reviews">
+      <h2>Airbnb Guest Reviews</h2>
+      <p class="section-note">Recent public reviews from Airbnb guests who stayed in our furnished property.</p>
 
+      <div class="review-grid">
+        <article class="review-item">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-name">Mikle</div>
+          <div class="review-location">Billings, MT</div>
+          <div class="review-stay">Stayed March 2026</div>
+          <blockquote>“Can’t say enough how wonderful our stay was at Daniel’s apartment! It was very clean, welcoming and comfortable, every amenity we could need. He went above and beyond, knowing that I was grieving a loss to show compassion and care! Not only was it a great price, but it was a great location and I would stay anytime we’re in town and highly recommend to anyone going to Mountain Home. It was family friendly and our kids loved the cool colorful lights in the rooms.”</blockquote>
+          <div class="review-meta">Airbnb Public Review</div>
+        </article>
 
-    <!-- About -->
+        <article class="review-item">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-name">Molly</div>
+          <div class="review-location">Fort Collins, CO</div>
+          <div class="review-stay">Stayed March 2026</div>
+          <blockquote>“Great place! Had all the necessities to make the stay super easy and convenient. So glad we found it!”</blockquote>
+          <div class="review-meta">Airbnb Public Review</div>
+        </article>
+
+        <article class="review-item">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-name">Tammy</div>
+          <div class="review-location">Little River, KS</div>
+          <div class="review-stay">Stayed March 2026</div>
+          <blockquote>“We had an awesome stay. Every amenity you would ever need was in the house. It was very clean and comfortable. Daniel was very responsive and helpful. Will definitely stay here again!”</blockquote>
+          <div class="review-meta">Airbnb Public Review</div>
+        </article>
+
+        <article class="review-item">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-name">Joel</div>
+          <div class="review-location">Bayview, ID</div>
+          <div class="review-stay">Stayed March 2026</div>
+          <blockquote>“All was as advertised and Daniel was very responsive and helpful when needed.”</blockquote>
+          <div class="review-meta">Airbnb Public Review</div>
+        </article>
+
+        <article class="review-item">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <div class="review-name">Tracy</div>
+          <div class="review-location">New Braunfels, TX</div>
+          <div class="review-stay">Stayed January–March 2026</div>
+          <blockquote>“Daniel was great. His place was perfect for our needs. We would definitely stay again.”</blockquote>
+          <div class="review-meta">Airbnb Public Review</div>
+        </article>
+      </div>
+    </div>
+
+    <div id="contact" class="card">
+      <h2>Contact</h2>
+      <p><strong>Email (Daniel):</strong>
+        <a href="mailto:Daniel@passivestaysolutions.com">Daniel@passivestaysolutions.com</a></p>
+      <p><strong>Email (Jerrica):</strong>
+        <a href="mailto:Jerrica@passivestaysolutions.com">Jerrica@passivestaysolutions.com</a></p>
+    </div>
+
     <div id="about" class="card">
       <h2>About Daniel</h2>
       <p>Daniel grew up immersed in the construction industry, where he built a strong work ethic and deep respect for quality housing. Those early experiences gave him practical knowledge of the building trades and an appreciation for well-maintained properties.</p>
       <p>After marrying into a family with a rich legacy in the military and healthcare, Daniel saw firsthand the unique challenges faced by traveling healthcare workers, patients, and military personnel. His perspective became deeply personal when his father was diagnosed with Alpha-1 Antitrypsin Deficiency and required a double lung transplant. This journey highlighted the urgent need for safe, reliable housing during times of transition.</p>
-      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers—while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
+      <p>Motivated by this experience, Daniel founded <strong>Passive Stay Solutions LLC</strong> with a mission: to provide housing that supports traveling healthcare professionals, patients, and other mobile workers while giving property owners peace of mind through responsible, hassle-free partnerships.</p>
     </div>
 
-    <!-- FAQ -->
     <div class="card" id="faq">
       <h2>Frequently Asked Questions</h2>
       <details class="faq">
@@ -294,7 +443,6 @@
     </div>
   </footer>
 
-  <!-- Video Modal -->
   <div id="videoOverlay" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="howItWorksTitle">
     <div class="video-content">
       <h2 id="howItWorksTitle" class="sr-only">How It Works — Video</h2>
@@ -356,13 +504,15 @@
           fig.classList.remove('is-fading');
         }, anim);
       }
+
       function next(){ i = (i + 1) % items.length; render(i); }
       function prev(){ i = (i - 1 + items.length) % items.length; render(i); }
       function goTo(idx){ i = (idx + items.length) % items.length; render(i); start(); }
       function start(){ stop(); if (!prefersReduced) timer = setInterval(next, delay); }
       function stop(){ if (timer) { clearInterval(timer); timer = null; } }
 
-      render(i); start();
+      render(i);
+      start();
 
       dots.forEach((d, j) => d.addEventListener('click', () => goTo(j)));
       card.addEventListener('mouseenter', stop);
@@ -371,7 +521,6 @@
       card.addEventListener('focusout', start);
       document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); }, {passive:true});
 
-      // Swipe
       let startX = 0, startY = 0, isTouch = false, moved = false;
       function onStart(e){
         isTouch = e.type === 'touchstart';
@@ -403,7 +552,6 @@
       card.addEventListener('mousedown', onStart);
     })();
 
-    // Video modal + CTA reveal
     const overlay = document.getElementById('videoOverlay');
     const content = overlay.querySelector('.video-content');
     const closeBtn = overlay.querySelector('.video-close');
@@ -446,15 +594,12 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-
-    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 
-  <!-- FAQ Structured Data (SEO) -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Do I still get paid rent if the home is unoccupied?","acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}},
-    {"@type":"Question","name":"Who would be staying in my property?","acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the “un-hotel” experience."}},
+    {"@type":"Question","name":"Who would be staying in my property?","acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the un-hotel experience."}},
     {"@type":"Question","name":"How do I see if my property will qualify?","acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}}
   ]}
   </script>
