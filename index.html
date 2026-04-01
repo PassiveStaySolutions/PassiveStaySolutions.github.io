@@ -4,21 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO -->
   <title>Passive Stay Solutions LLC | Corporate Housing for Nurses, Doctors, Patients & Professionals</title>
   <meta name="description" content="Passive Stay Solutions LLC partners with landlords, property managers, and realtors to provide hassle-free corporate housing for traveling nurses, doctors, patients, business professionals, and military personnel. No fees, guaranteed rent, and responsible tenants.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://www.passivestaysolutions.com/">
 
-  <!-- Performance -->
   <link rel="preload" as="image" href="livingroom-1440.jpg">
   <link rel="preload" as="image" href="livingroom-mobile.jpeg" media="(max-width: 1024px)">
   <link rel="preload" as="image" href="Howitworks.png"/>
-
-  <!-- Optional: reference your sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Passive Stay Solutions LLC">
   <meta property="og:url" content="https://www.passivestaysolutions.com/">
@@ -30,14 +25,12 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Twitter (X) -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.passivestaysolutions.com/">
   <meta name="twitter:title" content="Passive Stay Solutions LLC | Corporate Housing Partnerships">
   <meta name="twitter:description" content="No fees, guaranteed rent, and responsible tenants. We partner with landlords, property managers, and realtors to provide hassle-free corporate housing.">
   <meta name="twitter:image" content="https://www.passivestaysolutions.com/social-banner.png?v=2">
 
-  <!-- Favicons / App icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="logo_32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="logo_256x256.png">
   <link rel="apple-touch-icon" href="logo_256x256.png">
@@ -166,9 +159,32 @@
     .btn:hover{ filter:brightness(.95); transform:translateY(-1px); }
     .btn:active{ transform:translateY(0); }
 
+    .section-note{
+      color:var(--muted);
+      margin-top:.25rem;
+      margin-bottom:1rem;
+    }
+
+    .review-kicker{
+      color:#facc15;
+      font-weight:700;
+      letter-spacing:.04em;
+      margin-bottom:.7rem;
+      font-size:.95rem;
+      line-height:1.45;
+    }
+
+    /* cleaner slider layout */
+    .review-slider{
+      display:flex;
+      flex-direction:column;
+      min-height:360px;
+    }
+
     .fade-wrap{
       position:relative;
-      min-height:150px;
+      flex:1;
+      min-height:0;
     }
 
     .fade-el{
@@ -176,6 +192,9 @@
       transition:opacity .45s ease, transform .45s ease;
       opacity:1;
       transform:translateY(0);
+      height:100%;
+      display:flex;
+      flex-direction:column;
     }
 
     .fade-el.is-fading{
@@ -183,15 +202,51 @@
       transform:translateY(8px);
     }
 
+    .review-box{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:1rem;
+      min-height:240px;
+      height:100%;
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .review-scroll{
+      flex:1;
+      overflow:auto;
+      padding-right:.25rem;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,255,255,.25) transparent;
+    }
+
+    .review-scroll::-webkit-scrollbar{
+      width:8px;
+    }
+
+    .review-scroll::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.22);
+      border-radius:999px;
+    }
+
+    .review-scroll::-webkit-scrollbar-track{
+      background:transparent;
+    }
+
     .fade-el blockquote{
       margin:0 0 .85rem;
-      font-size:1.1rem;
+      font-size:1.05rem;
       line-height:1.7;
     }
 
     .fade-el figcaption{
       color:var(--muted);
       font-weight:600;
+      line-height:1.5;
+      margin-top:.5rem;
+      flex-shrink:0;
     }
 
     .t-dots{
@@ -199,6 +254,7 @@
       gap:.45rem;
       margin-top:1rem;
       flex-wrap:wrap;
+      flex-shrink:0;
     }
 
     .t-dot{
@@ -215,64 +271,19 @@
       background:var(--accent);
     }
 
-    .section-note{
-      color:var(--muted);
-      margin-top:.25rem;
-      margin-bottom:1rem;
-    }
+    @media (max-width:700px){
+      .review-slider{
+        min-height:420px;
+      }
 
-    .review-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:1rem;
-      margin-top:1rem;
-    }
+      .review-box{
+        min-height:300px;
+      }
 
-    .review-item{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:12px;
-      padding:1rem;
-      height:100%;
-    }
-
-    .review-item blockquote{
-      margin:.8rem 0 0;
-      line-height:1.65;
-      font-size:1rem;
-    }
-
-    .review-meta{
-      color:var(--muted);
-      font-size:.95rem;
-      line-height:1.4;
-    }
-
-    .review-stars{
-      color:#facc15;
-      font-weight:700;
-      letter-spacing:.06em;
-      font-size:1rem;
-      margin-bottom:.45rem;
-    }
-
-    .review-name{
-      color:var(--text);
-      font-weight:700;
-      font-size:1.08rem;
-      margin:.1rem 0;
-    }
-
-    .review-location{
-      color:var(--muted);
-      font-size:.95rem;
-      margin-bottom:.2rem;
-    }
-
-    .review-stay{
-      color:var(--muted);
-      font-size:.9rem;
-      margin-bottom:.35rem;
+      .fade-el blockquote{
+        font-size:1rem;
+        line-height:1.65;
+      }
     }
   </style>
 
@@ -323,73 +334,54 @@
       <p>Our goal is to give business professionals a home away from home while ensuring your property is always well-maintained and stress-free for you.</p>
     </div>
 
-    <div class="card" id="testimonials">
-      <h2>Landlord & Partner Reviews</h2>
-      <p class="section-note">Feedback from landlords, property managers, and business partners we work with.</p>
-      <div class="fade-wrap" aria-live="polite">
-        <figure class="fade-el">
-          <blockquote id="t-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
-          <figcaption id="t-author">— Evelyn Carter</figcaption>
-        </figure>
-      </div>
-      <div class="t-dots" role="tablist" aria-label="Testimonials">
-        <button type="button" class="t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show testimonial 1"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 4"></button>
-        <button type="button" class="t-dot" role="tab" aria-selected="false" aria-label="Show testimonial 5"></button>
+    <div class="card" id="owner-expectations">
+      <h2>What Property Owners Can Expect</h2>
+      <p class="section-note">Illustrative examples of the kind of experience we aim to provide for landlords and property partners.</p>
+
+      <div class="review-slider">
+        <div class="fade-wrap" aria-live="polite">
+          <figure class="fade-el">
+            <div class="review-box">
+              <div class="review-scroll">
+                <blockquote id="owner-quote">“Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.”</blockquote>
+              </div>
+              <figcaption id="owner-author">— Evelyn Carter</figcaption>
+            </div>
+          </figure>
+        </div>
+        <div class="t-dots" role="tablist" aria-label="Owner expectation examples">
+          <button type="button" class="owner-dot t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show example 1"></button>
+          <button type="button" class="owner-dot t-dot" role="tab" aria-selected="false" aria-label="Show example 2"></button>
+          <button type="button" class="owner-dot t-dot" role="tab" aria-selected="false" aria-label="Show example 3"></button>
+          <button type="button" class="owner-dot t-dot" role="tab" aria-selected="false" aria-label="Show example 4"></button>
+          <button type="button" class="owner-dot t-dot" role="tab" aria-selected="false" aria-label="Show example 5"></button>
+        </div>
       </div>
     </div>
 
     <div class="card" id="guest-reviews">
       <h2>Airbnb Guest Reviews</h2>
-      <p class="section-note">Recent public reviews from Airbnb guests who stayed in our furnished property.</p>
+      <p class="section-note">Real public reviews from Airbnb guests who stayed in our furnished property.</p>
 
-      <div class="review-grid">
-        <article class="review-item">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-name">Mikle</div>
-          <div class="review-location">Billings, MT</div>
-          <div class="review-stay">Stayed March 2026</div>
-          <blockquote>“Can’t say enough how wonderful our stay was at Daniel’s apartment! It was very clean, welcoming and comfortable, every amenity we could need. He went above and beyond, knowing that I was grieving a loss to show compassion and care! Not only was it a great price, but it was a great location and I would stay anytime we’re in town and highly recommend to anyone going to Mountain Home. It was family friendly and our kids loved the cool colorful lights in the rooms.”</blockquote>
-          <div class="review-meta">Airbnb Public Review</div>
-        </article>
-
-        <article class="review-item">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-name">Molly</div>
-          <div class="review-location">Fort Collins, CO</div>
-          <div class="review-stay">Stayed March 2026</div>
-          <blockquote>“Great place! Had all the necessities to make the stay super easy and convenient. So glad we found it!”</blockquote>
-          <div class="review-meta">Airbnb Public Review</div>
-        </article>
-
-        <article class="review-item">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-name">Tammy</div>
-          <div class="review-location">Little River, KS</div>
-          <div class="review-stay">Stayed March 2026</div>
-          <blockquote>“We had an awesome stay. Every amenity you would ever need was in the house. It was very clean and comfortable. Daniel was very responsive and helpful. Will definitely stay here again!”</blockquote>
-          <div class="review-meta">Airbnb Public Review</div>
-        </article>
-
-        <article class="review-item">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-name">Joel</div>
-          <div class="review-location">Bayview, ID</div>
-          <div class="review-stay">Stayed March 2026</div>
-          <blockquote>“All was as advertised and Daniel was very responsive and helpful when needed.”</blockquote>
-          <div class="review-meta">Airbnb Public Review</div>
-        </article>
-
-        <article class="review-item">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <div class="review-name">Tracy</div>
-          <div class="review-location">New Braunfels, TX</div>
-          <div class="review-stay">Stayed January–March 2026</div>
-          <blockquote>“Daniel was great. His place was perfect for our needs. We would definitely stay again.”</blockquote>
-          <div class="review-meta">Airbnb Public Review</div>
-        </article>
+      <div class="review-slider">
+        <div class="fade-wrap" aria-live="polite">
+          <figure class="fade-el">
+            <div class="review-box">
+              <div class="review-scroll">
+                <div class="review-kicker" id="guest-kicker">★★★★★ • Mikle • Billings, MT • Stayed March 2026</div>
+                <blockquote id="guest-quote">“Can’t say enough how wonderful our stay was at Daniel’s apartment! It was very clean, welcoming and comfortable, every amenity we could need. He went above and beyond, knowing that I was grieving a loss to show compassion and care! Not only was it a great price, but it was a great location and I would stay anytime we’re in town and highly recommend to anyone going to Mountain Home. It was family friendly and our kids loved the cool colorful lights in the rooms.”</blockquote>
+              </div>
+              <figcaption id="guest-author">— Airbnb Public Review</figcaption>
+            </div>
+          </figure>
+        </div>
+        <div class="t-dots" role="tablist" aria-label="Airbnb guest reviews">
+          <button type="button" class="guest-dot t-dot" role="tab" aria-selected="true" aria-current="true" aria-label="Show guest review 1"></button>
+          <button type="button" class="guest-dot t-dot" role="tab" aria-selected="false" aria-label="Show guest review 2"></button>
+          <button type="button" class="guest-dot t-dot" role="tab" aria-selected="false" aria-label="Show guest review 3"></button>
+          <button type="button" class="guest-dot t-dot" role="tab" aria-selected="false" aria-label="Show guest review 4"></button>
+          <button type="button" class="guest-dot t-dot" role="tab" aria-selected="false" aria-label="Show guest review 5"></button>
+        </div>
       </div>
     </div>
 
@@ -468,46 +460,47 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    (function(){
-      const items = [
-        { quote: "Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.", author: "— Evelyn Carter" },
-        { quote: "I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.", author: "— David Martinez" },
-        { quote: "The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.", author: "— Sophia Nguyen" },
-        { quote: "I used to budget for surprise repairs and lost rent—now it’s steady income and zero stress. The property actually looks better month over month.", author: "— Marcus Reed" },
-        { quote: "Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.", author: "— Ana Romero" }
-      ];
-
-      const card = document.getElementById('testimonials');
+    function setupRotatingTestimonials(config){
+      const card = document.getElementById(config.cardId);
       if (!card) return;
 
       const wrap = card.querySelector('.fade-wrap');
-      const fig  = wrap?.querySelector('figure');
-      const q    = document.getElementById('t-quote');
-      const a    = document.getElementById('t-author');
-      const dots = Array.from(card.querySelectorAll('.t-dot'));
-      if (!wrap || !fig || !q || !a || dots.length === 0) return;
+      const fig = wrap?.querySelector('figure');
+      const quoteEl = document.getElementById(config.quoteId);
+      const authorEl = document.getElementById(config.authorId);
+      const dots = Array.from(card.querySelectorAll(config.dotSelector));
+      const kickerEl = config.kickerId ? document.getElementById(config.kickerId) : null;
+
+      if (!wrap || !fig || !quoteEl || !authorEl || dots.length === 0) return;
 
       let i = 0, timer = null;
-      const delay = 6000, anim = 450;
+      const delay = 6500, anim = 450;
       const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function resetScroll(){
+        const scrollEl = fig.querySelector('.review-scroll');
+        if (scrollEl) scrollEl.scrollTop = 0;
+      }
 
       function render(idx){
         fig.classList.add('is-fading');
         setTimeout(() => {
-          q.textContent = "“" + items[idx].quote + "”";
-          a.textContent = items[idx].author;
+          if (kickerEl && config.items[idx].kicker) kickerEl.textContent = config.items[idx].kicker;
+          quoteEl.textContent = "“" + config.items[idx].quote + "”";
+          authorEl.textContent = config.items[idx].author;
           dots.forEach((d, j) => {
             const active = j === idx;
             d.setAttribute('aria-selected', active ? 'true' : 'false');
             if (active) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
           });
           fig.classList.remove('is-fading');
+          resetScroll();
         }, anim);
       }
 
-      function next(){ i = (i + 1) % items.length; render(i); }
-      function prev(){ i = (i - 1 + items.length) % items.length; render(i); }
-      function goTo(idx){ i = (idx + items.length) % items.length; render(i); start(); }
+      function next(){ i = (i + 1) % config.items.length; render(i); }
+      function prev(){ i = (i - 1 + config.items.length) % config.items.length; render(i); }
+      function goTo(idx){ i = (idx + config.items.length) % config.items.length; render(i); start(); }
       function start(){ stop(); if (!prefersReduced) timer = setInterval(next, delay); }
       function stop(){ if (timer) { clearInterval(timer); timer = null; } }
 
@@ -522,35 +515,91 @@
       document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); }, {passive:true});
 
       let startX = 0, startY = 0, isTouch = false, moved = false;
+
       function onStart(e){
         isTouch = e.type === 'touchstart';
         const p = isTouch ? e.touches[0] : e;
-        startX = p.clientX; startY = p.clientY; moved = false;
+        startX = p.clientX;
+        startY = p.clientY;
+        moved = false;
         stop();
         card.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, {passive:true});
-        card.addEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(!isTouch) card.addEventListener('mouseleave', onEnd);
+        card.addEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
+        if (!isTouch) card.addEventListener('mouseleave', onEnd);
       }
+
       function onMove(e){
         const p = isTouch ? e.touches[0] : e;
         const dx = p.clientX - startX;
         const dy = p.clientY - startY;
         moved = Math.abs(dx) > 24 && Math.abs(dx) > Math.abs(dy);
       }
+
       function onEnd(e){
         card.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-        card.removeEventListener(isTouch ? 'touchend'  : 'mouseup', onEnd);
-        if(moved){
+        card.removeEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
+        if (moved){
           const p = isTouch ? (e.changedTouches ? e.changedTouches[0] : null) : e;
           const endX = p ? p.clientX : startX;
           const dx = endX - startX;
-          if (dx < 0) next(); else if (dx > 0) prev();
+          if (dx < 0) next();
+          else if (dx > 0) prev();
         }
         start();
       }
+
       card.addEventListener('touchstart', onStart, {passive:true});
       card.addEventListener('mousedown', onStart);
-    })();
+    }
+
+    setupRotatingTestimonials({
+      cardId: 'owner-expectations',
+      quoteId: 'owner-quote',
+      authorId: 'owner-author',
+      dotSelector: '.owner-dot',
+      items: [
+        { quote: 'Within the first month I could already see the difference. The rent is consistent, the property stays in great shape, and I no longer worry about late payments or unexpected headaches.', author: '— Evelyn Carter' },
+        { quote: 'I’ve worked with property managers before, but this is on a different level. The guests are respectful, the place is always clean, and well maintained.', author: '— David Martinez' },
+        { quote: 'The best part is how hands-off it feels. They handle the details, I get steady income, and my property is actually improving in value because it’s so well cared for.', author: '— Sophia Nguyen' },
+        { quote: 'I used to budget for surprise repairs and lost rent. Now it’s steady income and zero stress. The property actually looks better month over month.', author: '— Marcus Reed' },
+        { quote: 'Turnover used to be a headache. Now the home is cleaned regularly, lightly used, and I get dependable payments. It’s exactly what I hoped for.', author: '— Ana Romero' }
+      ]
+    });
+
+    setupRotatingTestimonials({
+      cardId: 'guest-reviews',
+      quoteId: 'guest-quote',
+      authorId: 'guest-author',
+      kickerId: 'guest-kicker',
+      dotSelector: '.guest-dot',
+      items: [
+        {
+          kicker: '★★★★★ • Mikle • Billings, MT • Stayed March 2026',
+          quote: 'Can’t say enough how wonderful our stay was at Daniel’s apartment! It was very clean, welcoming and comfortable, every amenity we could need. He went above and beyond, knowing that I was grieving a loss to show compassion and care! Not only was it a great price, but it was a great location and I would stay anytime we’re in town and highly recommend to anyone going to Mountain Home. It was family friendly and our kids loved the cool colorful lights in the rooms.',
+          author: '— Airbnb Public Review'
+        },
+        {
+          kicker: '★★★★★ • Molly • Fort Collins, CO • Stayed March 2026',
+          quote: 'Great place! Had all the necessities to make the stay super easy and convenient. So glad we found it!',
+          author: '— Airbnb Public Review'
+        },
+        {
+          kicker: '★★★★★ • Tammy • Little River, KS • Stayed March 2026',
+          quote: 'We had an awesome stay. Every amenity you would ever need was in the house. It was very clean and comfortable. Daniel was very responsive and helpful. Will definitely stay here again!',
+          author: '— Airbnb Public Review'
+        },
+        {
+          kicker: '★★★★★ • Joel • Bayview, ID • Stayed March 2026',
+          quote: 'All was as advertised and Daniel was very responsive and helpful when needed.',
+          author: '— Airbnb Public Review'
+        },
+        {
+          kicker: '★★★★★ • Tracy • New Braunfels, TX • Stayed January–March 2026',
+          quote: 'Daniel was great. His place was perfect for our needs. We would definitely stay again.',
+          author: '— Airbnb Public Review'
+        }
+      ]
+    });
 
     const overlay = document.getElementById('videoOverlay');
     const content = overlay.querySelector('.video-content');
@@ -599,8 +648,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Do I still get paid rent if the home is unoccupied?","acceptedAnswer":{"@type":"Answer","text":"Yes absolutely! You will receive rent regardless of occupancy."}},
-    {"@type":"Question","name":"Who would be staying in my property?","acceptedAnswer":{"@type":"Answer","text":"Business and leisure travelers seeking the un-hotel experience."}},
-    {"@type":"Question","name":"How do I see if my property will qualify?","acceptedAnswer":{"@type":"Answer","text":"Send us a note — if it’s a fit for both of us, we’ll be in touch."}}
+    {"@type":"Question","name":"Who would be staying in my property?","acceptedAnswer":{"@type":"Answer","text":"Our guests are business and leisure travelers seeking something different. We deliver the un-hotel experience to our guests."}},
+    {"@type":"Question","name":"How do I see if my property will qualify?","acceptedAnswer":{"@type":"Answer","text":"Your place may be exactly what we’re looking for. To find out if it’s a fit for both of us, just submit your information below and we’ll be in touch!"}}
   ]}
   </script>
 </body>
